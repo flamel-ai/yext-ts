@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
 import {
+  buildYextAuthorizeUrl,
   configureYext,
   configureYextClient,
   createYextFetch,
@@ -111,6 +112,32 @@ describe("configure helpers", () => {
       expect(spy).toHaveBeenCalledOnce();
       spy.mockRestore();
     }
+  });
+});
+
+describe("OAuth authorize URL", () => {
+  it("builds the production authorize URL with Yext's required params", () => {
+    const url = new URL(
+      buildYextAuthorizeUrl({
+        clientId: "cid",
+        redirectUri: "https://app.example.com/cb",
+        scope: "read_entities",
+        state: "xyz",
+      }),
+    );
+    expect(url.origin + url.pathname).toBe("https://www.yext.com/oauth2/authorize");
+    expect(url.searchParams.get("client_id")).toBe("cid");
+    expect(url.searchParams.get("response_type")).toBe("code");
+    expect(url.searchParams.get("grant_type")).toBe("authorization_code");
+    expect(url.searchParams.get("redirect_uri")).toBe("https://app.example.com/cb");
+    expect(url.searchParams.get("state")).toBe("xyz");
+  });
+
+  it("targets sandbox hosts when environment is sandbox", () => {
+    const url = new URL(
+      buildYextAuthorizeUrl({ clientId: "c", redirectUri: "https://x/cb", environment: "sandbox" }),
+    );
+    expect(url.origin + url.pathname).toBe("https://sandbox.yext.com/oauth2/authorize");
   });
 });
 

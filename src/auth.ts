@@ -168,6 +168,8 @@ export function buildYextAuthorizeUrl(params: {
   url.searchParams.set("client_id", params.clientId);
   url.searchParams.set("redirect_uri", params.redirectUri);
   url.searchParams.set("response_type", "code");
+  // Yext documents `grant_type` as required on the authorize endpoint too.
+  url.searchParams.set("grant_type", "authorization_code");
   if (params.scope) url.searchParams.set("scope", params.scope);
   if (params.state) url.searchParams.set("state", params.state);
   return url.toString();
