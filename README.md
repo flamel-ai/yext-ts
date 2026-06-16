@@ -1,6 +1,6 @@
 # yext-ts
 
-[![CI](https://github.com/flamel-ai/yext-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/flamel-ai/yext-ts/actions/workflows/ci.yml)
+[![CI](https://github.com/flamel-ai/yext-api/actions/workflows/ci.yml/badge.svg)](https://github.com/flamel-ai/yext-api/actions/workflows/ci.yml)
 
 A clean, fully-typed TypeScript SDK for the [Yext API](https://hitchhikers.yext.com/docs/), generated from Yext's official [OpenAPI specs](https://github.com/yext/openapi) with [`@hey-api/openapi-ts`](https://heyapi.dev) and [zod](https://zod.dev) validation.
 

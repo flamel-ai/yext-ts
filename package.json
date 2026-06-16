@@ -12,11 +12,11 @@
   "author": "Flamel AI",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/flamel-ai/yext-ts.git"
+    "url": "git+https://github.com/flamel-ai/yext-api.git"
   },
-  "homepage": "https://github.com/flamel-ai/yext-ts#readme",
+  "homepage": "https://github.com/flamel-ai/yext-api#readme",
   "bugs": {
-    "url": "https://github.com/flamel-ai/yext-ts/issues"
+    "url": "https://github.com/flamel-ai/yext-api/issues"
   },
   "keywords": [
     "yext",
