@@ -20,25 +20,25 @@ Requires Node 20+. `zod` is a dependency (no peer-install needed).
 
 Each Yext API is its own subpath import:
 
-| Import | API |
-|---|---|
-| `yext-ts/admin` | Admin |
-| `yext-ts/answers` | Answers / Search |
-| `yext-ts/chat` | Chat |
-| `yext-ts/events` | Events |
-| `yext-ts/knowledge` | Knowledge Graph (entities) |
-| `yext-ts/live` | Live (content delivery) |
-| `yext-ts/listings` | Publisher Listings |
-| `yext-ts/publisher-ecl` | Publisher ECL |
-| `yext-ts/publisher-notify-review` | Publisher Notify Review |
-| `yext-ts/publisher-tracking-pixel` | Publisher Tracking Pixel |
-| `yext-ts/webhooks` | Webhooks |
+| Import | API | Yext docs |
+|---|---|---|
+| `yext-ts/admin` | Admin | [Management APIs](https://hitchhikers.yext.com/docs/managementapis/) |
+| `yext-ts/answers` | Search | [Search](https://hitchhikers.yext.com/docs/search/) |
+| `yext-ts/chat` | Chat | [Chat](https://help.yext.com/hc/en-us/categories/49481259573275-Chat) |
+| `yext-ts/events` | Analytics Events | [Events APIs](https://hitchhikers.yext.com/docs/eventsapis/) |
+| `yext-ts/knowledge` | Knowledge Graph (entities) | [Management APIs](https://hitchhikers.yext.com/docs/managementapis/) |
+| `yext-ts/live` | Live (content delivery) | [Content Delivery APIs](https://hitchhikers.yext.com/docs/contentdeliveryapis/) |
+| `yext-ts/listings` | Publisher Listings | [Publisher Listings API](https://hitchhikers.yext.com/publisherapis/publisherlistingsapi) |
+| `yext-ts/publisher-ecl` | Publisher ECL | [Publisher ECL API](https://hitchhikers.yext.com/publisherapis/publishereclapi) |
+| `yext-ts/publisher-notify-review` | Publisher Notify Review | [Publisher Notify Review API](https://hitchhikers.yext.com/publisherapis/publishernotifyreviewapi) |
+| `yext-ts/publisher-tracking-pixel` | Publisher Tracking Pixel | [Publisher Tracking Pixel API](https://hitchhikers.yext.com/publisherapis/publishertrackingpixelapi) |
+| `yext-ts/webhooks` | Webhooks | [Webhooks](https://hitchhikers.yext.com/docs/managementapis/webhooks/) |
 
 The package root (`yext-ts`) re-exports every module namespaced (`knowledge`, `listings`, …) plus all the auth helpers. Prefer subpath imports for the smallest bundle.
 
 ## Authentication
 
-Yext accepts three credential shapes, and **every** request also needs a `v` API-version date (`YYYYMMDD`). `yext-ts` injects both for you at the fetch layer, so you configure once and never thread them through individual calls.
+Yext accepts three credential shapes, and **every** request also needs a `v` API-version date (`YYYYMMDD`). `yext-ts` injects both for you at the fetch layer, so you configure once and never thread them through individual calls. See Yext's [Management APIs docs](https://hitchhikers.yext.com/docs/managementapis/) for how credentials and the `v` parameter work.
 
 | Credential | Sent as |
 |---|---|
