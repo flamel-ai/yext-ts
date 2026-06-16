@@ -37,59 +37,87 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
     },
     "./auth": {
       "types": "./dist/auth.d.ts",
-      "import": "./dist/auth.js"
+      "import": "./dist/auth.js",
+      "require": "./dist/auth.cjs",
+      "default": "./dist/auth.js"
     },
     "./errors": {
       "types": "./dist/errors.d.ts",
-      "import": "./dist/errors.js"
+      "import": "./dist/errors.js",
+      "require": "./dist/errors.cjs",
+      "default": "./dist/errors.js"
     },
     "./admin": {
       "types": "./dist/admin/index.d.ts",
-      "import": "./dist/admin/index.js"
+      "import": "./dist/admin/index.js",
+      "require": "./dist/admin/index.cjs",
+      "default": "./dist/admin/index.js"
     },
     "./answers": {
       "types": "./dist/answers/index.d.ts",
-      "import": "./dist/answers/index.js"
+      "import": "./dist/answers/index.js",
+      "require": "./dist/answers/index.cjs",
+      "default": "./dist/answers/index.js"
     },
     "./chat": {
       "types": "./dist/chat/index.d.ts",
-      "import": "./dist/chat/index.js"
+      "import": "./dist/chat/index.js",
+      "require": "./dist/chat/index.cjs",
+      "default": "./dist/chat/index.js"
     },
     "./events": {
       "types": "./dist/events/index.d.ts",
-      "import": "./dist/events/index.js"
+      "import": "./dist/events/index.js",
+      "require": "./dist/events/index.cjs",
+      "default": "./dist/events/index.js"
     },
     "./knowledge": {
       "types": "./dist/knowledge/index.d.ts",
-      "import": "./dist/knowledge/index.js"
+      "import": "./dist/knowledge/index.js",
+      "require": "./dist/knowledge/index.cjs",
+      "default": "./dist/knowledge/index.js"
     },
     "./live": {
       "types": "./dist/live/index.d.ts",
-      "import": "./dist/live/index.js"
+      "import": "./dist/live/index.js",
+      "require": "./dist/live/index.cjs",
+      "default": "./dist/live/index.js"
     },
     "./publisher-ecl": {
       "types": "./dist/publisher-ecl/index.d.ts",
-      "import": "./dist/publisher-ecl/index.js"
+      "import": "./dist/publisher-ecl/index.js",
+      "require": "./dist/publisher-ecl/index.cjs",
+      "default": "./dist/publisher-ecl/index.js"
     },
     "./listings": {
       "types": "./dist/listings/index.d.ts",
-      "import": "./dist/listings/index.js"
+      "import": "./dist/listings/index.js",
+      "require": "./dist/listings/index.cjs",
+      "default": "./dist/listings/index.js"
     },
     "./publisher-notify-review": {
       "types": "./dist/publisher-notify-review/index.d.ts",
-      "import": "./dist/publisher-notify-review/index.js"
+      "import": "./dist/publisher-notify-review/index.js",
+      "require": "./dist/publisher-notify-review/index.cjs",
+      "default": "./dist/publisher-notify-review/index.js"
     },
     "./publisher-tracking-pixel": {
       "types": "./dist/publisher-tracking-pixel/index.d.ts",
-      "import": "./dist/publisher-tracking-pixel/index.js"
+      "import": "./dist/publisher-tracking-pixel/index.js",
+      "require": "./dist/publisher-tracking-pixel/index.cjs",
+      "default": "./dist/publisher-tracking-pixel/index.js"
     },
     "./webhooks": {
       "types": "./dist/webhooks/index.d.ts",
-      "import": "./dist/webhooks/index.js"
+      "import": "./dist/webhooks/index.js",
+      "require": "./dist/webhooks/index.cjs",
+      "default": "./dist/webhooks/index.js"
     }
   },
   "scripts": {
@@ -114,5 +142,8 @@
   },
   "engines": {
     "node": ">=20"
-  }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts"
 }
