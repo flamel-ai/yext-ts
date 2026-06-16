@@ -765,7 +765,7 @@ export const zAutocompletePath = z.object({
 });
 
 export const zAutocompleteQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     experienceKey: z.string(),
     locale: z.string(),
     input: z.string().optional(),
@@ -799,7 +799,7 @@ export const zQueryPath = z.object({
 });
 
 export const zQueryQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     experienceKey: z.string(),
     locale: z.string(),
     input: z.string(),
@@ -841,7 +841,7 @@ export const zVerticalAutocompletePath = z.object({
 });
 
 export const zVerticalAutocompleteQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     experienceKey: z.string(),
     verticalKey: z.string(),
     locale: z.string(),
@@ -876,7 +876,7 @@ export const zVerticalQueryPath = z.object({
 });
 
 export const zVerticalQueryQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     experienceKey: z.string(),
     verticalKey: z.string(),
     locale: z.string(),
@@ -940,7 +940,7 @@ export const zFiltersearchPath = z.object({
 });
 
 export const zFiltersearchQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     experienceKey: z.string(),
     verticalKey: z.string(),
     locale: z.string(),
@@ -987,7 +987,7 @@ export const zGenerateAnswerPath = z.object({
 });
 
 export const zGenerateAnswerQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     experienceKey: z.string(),
     locale: z.string()
 });

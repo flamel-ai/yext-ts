@@ -1373,7 +1373,7 @@ export const zListEntitiesPath = z.object({
 });
 
 export const zListEntitiesQuery = z.object({
-    v: z.string().min(0),
+    v: z.string().min(0).optional(),
     convertMarkdownToHTML: z.string().min(0).optional(),
     convertRichTextToHTML: z.string().min(0).optional(),
     entityTypes: z.string().min(0).optional(),
@@ -3341,7 +3341,7 @@ export const zGetEntityPath = z.object({
 });
 
 export const zGetEntityQuery = z.object({
-    v: z.string().min(0),
+    v: z.string().min(0).optional(),
     convertMarkdownToHTML: z.string().min(0).optional(),
     convertRichTextToHTML: z.string().min(0).optional(),
     fields: z.string().min(0).optional(),
@@ -5297,7 +5297,7 @@ export const zGeoSearchEntitiesPath = z.object({
 
 export const zGeoSearchEntitiesQuery = z.object({
     location: z.string().min(0),
-    v: z.string().min(0),
+    v: z.string().min(0).optional(),
     countryBias: z.string().min(0).optional(),
     entityTypes: z.string().min(0).optional(),
     fields: z.string().min(0).optional(),
@@ -7304,7 +7304,7 @@ export const zGetEntitySchemaPath = z.object({
 });
 
 export const zGetEntitySchemaQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -7324,7 +7324,7 @@ export const zGetLanguageProfilePath = z.object({
 });
 
 export const zGetLanguageProfileQuery = z.object({
-    v: z.string().min(0),
+    v: z.string().min(0).optional(),
     convertMarkdownToHTML: z.string().min(0).optional(),
     convertRichTextToHTML: z.string().min(0).optional(),
     fields: z.string().min(0).optional(),
@@ -9280,7 +9280,7 @@ export const zListLanguageProfilesPath = z.object({
 });
 
 export const zListLanguageProfilesQuery = z.object({
-    v: z.string().min(0),
+    v: z.string().min(0).optional(),
     convertMarkdownToHTML: z.string().min(0).optional(),
     convertRichTextToHTML: z.string().min(0).optional(),
     entityTypes: z.string().min(0).optional(),
@@ -11239,7 +11239,7 @@ export const zListAllLanguageProfilesPath = z.object({
 });
 
 export const zListAllLanguageProfilesQuery = z.object({
-    v: z.string().min(0),
+    v: z.string().min(0).optional(),
     convertMarkdownToHTML: z.string().min(0).optional(),
     convertRichTextToHTML: z.string().min(0).optional(),
     entityTypes: z.string().min(0).optional(),
@@ -13208,7 +13208,7 @@ export const zGetMenusPath = z.object({
 });
 
 export const zGetMenusQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13227,7 +13227,7 @@ export const zGetBiosPath = z.object({
 });
 
 export const zGetBiosQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13246,7 +13246,7 @@ export const zGetProductsPath = z.object({
 });
 
 export const zGetProductsQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13265,7 +13265,7 @@ export const zGetEventsPath = z.object({
 });
 
 export const zGetEventsQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13286,7 +13286,7 @@ export const zGetLanguageProfilesPath = z.object({
 
 export const zGetLanguageProfilesQuery = z.object({
     fields: z.string().optional(),
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13306,7 +13306,7 @@ export const zListLocationLanguageProfilesPath = z.object({
 
 export const zListLocationLanguageProfilesQuery = z.object({
     fields: z.string().optional(),
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13328,7 +13328,7 @@ export const zGetLanguageProfilesSchemaPath = z.object({
 });
 
 export const zGetLanguageProfilesSchemaQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13348,7 +13348,7 @@ export const zGetLocationPath = z.object({
 
 export const zGetLocationQuery = z.object({
     fields: z.string().optional(),
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13371,7 +13371,7 @@ export const zLocationsListQuery = z.object({
     languages: z.string().optional().default('false'),
     fields: z.string().optional(),
     filters: z.string().optional(),
-    v: z.string(),
+    v: z.string().optional(),
     sortBy: z.string().optional()
 });
 
@@ -13394,7 +13394,7 @@ export const zGetLocationSchemaPath = z.object({
 });
 
 export const zGetLocationSchemaQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13421,7 +13421,7 @@ export const zGeoSearchQuery = z.object({
     languages: z.string().optional().default('false'),
     fields: z.string().optional(),
     filters: z.string().optional(),
-    v: z.string(),
+    v: z.string().optional(),
     sortBy: z.string().optional()
 });
 
@@ -13447,7 +13447,7 @@ export const zCreateQuestionPath = z.object({
 });
 
 export const zCreateQuestionQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13467,7 +13467,7 @@ export const zCreateReviewPath = z.object({
 });
 
 export const zCreateReviewQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13488,7 +13488,7 @@ export const zDeleteReviewPath = z.object({
 });
 
 export const zDeleteReviewQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13511,7 +13511,7 @@ export const zUpdateReviewPath = z.object({
 });
 
 export const zUpdateReviewQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13533,7 +13533,7 @@ export const zContentGetPath = z.object({
 });
 
 export const zContentGetQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -13556,7 +13556,7 @@ export const zContentListPath = z.object({
 });
 
 export const zContentListQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     limit: z.int().lte(50).optional().default(10),
     pageToken: z.string().optional()
 });

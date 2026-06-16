@@ -901,7 +901,7 @@ export type AutocompleteData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * String key that uniquely identifies the Search experience.
          */
@@ -1012,7 +1012,7 @@ export type QueryData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * String key that uniquely identifies the Search experience.
          */
@@ -1132,7 +1132,7 @@ export type VerticalAutocompleteData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * String key that uniquely identifies the Search experience.
          */
@@ -1247,7 +1247,7 @@ export type VerticalQueryData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * String key that uniquely identifies the Search experience.
          */
@@ -1778,7 +1778,7 @@ export type FiltersearchData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * String key that uniquely identifies the Search experience.
          */
@@ -1951,7 +1951,7 @@ export type GenerateAnswerData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * String key that uniquely identifies the Search experience.
          */

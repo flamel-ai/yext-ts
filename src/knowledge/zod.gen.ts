@@ -12090,7 +12090,7 @@ export const zListEntitiesPath = z.object({
 });
 
 export const zListEntitiesQuery = z.object({
-    v: z.string().min(0),
+    v: z.string().min(0).optional(),
     convertMarkdownToHTML: z.string().min(0).optional(),
     convertRichTextToHTML: z.string().min(0).optional(),
     entityTypes: z.string().min(0).optional(),
@@ -14067,7 +14067,7 @@ export const zCreateEntityPath = z.object({
 
 export const zCreateEntityQuery = z.object({
     entityType: z.string().min(0),
-    v: z.string().min(0),
+    v: z.string().min(0).optional(),
     format: z.string().min(0).optional().default('markdown'),
     stripUnsupportedFormats: z.boolean().optional(),
     templateFields: z.string().min(0).optional(),
@@ -16027,7 +16027,7 @@ export const zDeleteEntityPath = z.object({
 });
 
 export const zDeleteEntityQuery = z.object({
-    v: z.string().min(0)
+    v: z.string().min(0).optional()
 });
 
 /**
@@ -16046,7 +16046,7 @@ export const zGetEntityPath = z.object({
 });
 
 export const zGetEntityQuery = z.object({
-    v: z.string().min(0),
+    v: z.string().min(0).optional(),
     convertMarkdownToHTML: z.string().min(0).optional(),
     convertRichTextToHTML: z.string().min(0).optional(),
     fields: z.string().min(0).optional(),
@@ -18012,7 +18012,7 @@ export const zUpdateEntityPath = z.object({
 });
 
 export const zUpdateEntityQuery = z.object({
-    v: z.string().min(0),
+    v: z.string().min(0).optional(),
     format: z.string().min(0).optional().default('markdown'),
     stripUnsupportedFormats: z.boolean().optional(),
     templateFields: z.string().min(0).optional(),
@@ -19968,7 +19968,7 @@ export const zListLanguageProfilesPath = z.object({
 });
 
 export const zListLanguageProfilesQuery = z.object({
-    v: z.string().min(0),
+    v: z.string().min(0).optional(),
     convertMarkdownToHTML: z.string().min(0).optional(),
     convertRichTextToHTML: z.string().min(0).optional(),
     entityTypes: z.string().min(0).optional(),
@@ -21928,7 +21928,7 @@ export const zListAllLanguageProfilesPath = z.object({
 });
 
 export const zListAllLanguageProfilesQuery = z.object({
-    v: z.string().min(0),
+    v: z.string().min(0).optional(),
     convertMarkdownToHTML: z.string().min(0).optional(),
     convertRichTextToHTML: z.string().min(0).optional(),
     entityTypes: z.string().min(0).optional(),
@@ -23903,7 +23903,7 @@ export const zDeleteLanguageProfilePath = z.object({
 });
 
 export const zDeleteLanguageProfileQuery = z.object({
-    v: z.string().min(0)
+    v: z.string().min(0).optional()
 });
 
 /**
@@ -23923,7 +23923,7 @@ export const zGetLanguageProfilePath = z.object({
 });
 
 export const zGetLanguageProfileQuery = z.object({
-    v: z.string().min(0),
+    v: z.string().min(0).optional(),
     convertMarkdownToHTML: z.string().min(0).optional(),
     convertRichTextToHTML: z.string().min(0).optional(),
     fields: z.string().min(0).optional(),
@@ -25890,7 +25890,7 @@ export const zUpsertLanguageProfilePath = z.object({
 });
 
 export const zUpsertLanguageProfileQuery = z.object({
-    v: z.string().min(0)
+    v: z.string().min(0).optional()
 });
 
 /**
@@ -27846,7 +27846,7 @@ export const zGetLocationsPath = z.object({
 });
 
 export const zGetLocationsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     limit: z.int().lte(50).optional().default(10),
     offset: z.int().optional().default(0),
     resolvePlaceholders: z.boolean().optional().default(false),
@@ -27874,7 +27874,7 @@ export const zCreateLocationPath = z.object({
 });
 
 export const zCreateLocationQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -27894,7 +27894,7 @@ export const zSearchLocationsPath = z.object({
 });
 
 export const zSearchLocationsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     limit: z.int().lte(50).optional().default(10),
     offset: z.int().lte(9950).optional().default(0),
     filters: z.string().optional()
@@ -27919,7 +27919,7 @@ export const zGetLocationPath = z.object({
 });
 
 export const zGetLocationQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     resolvePlaceholders: z.boolean().optional().default(false)
 });
 
@@ -27941,7 +27941,7 @@ export const zUpdateLocationPath = z.object({
 });
 
 export const zUpdateLocationQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -27963,7 +27963,7 @@ export const zGetLocationFoldersPath = z.object({
 export const zGetLocationFoldersQuery = z.object({
     offset: z.int().optional().default(0),
     limit: z.int().lte(1000).optional().default(100),
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -27984,7 +27984,7 @@ export const zGetMenusPath = z.object({
 });
 
 export const zGetMenusQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     limit: z.int().lte(50).optional().default(10),
     offset: z.int().optional().default(0)
 });
@@ -28009,7 +28009,7 @@ export const zCreateMenuPath = z.object({
 });
 
 export const zCreateMenuQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28030,7 +28030,7 @@ export const zDeleteMenuListPath = z.object({
 });
 
 export const zDeleteMenuListQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28049,7 +28049,7 @@ export const zGetMenuPath = z.object({
 });
 
 export const zGetMenuQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28070,7 +28070,7 @@ export const zUpdateMenuPath = z.object({
 });
 
 export const zUpdateMenuQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28088,7 +28088,7 @@ export const zGetBiosPath = z.object({
 });
 
 export const zGetBiosQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     limit: z.int().lte(50).optional().default(10),
     offset: z.int().optional().default(0)
 });
@@ -28113,7 +28113,7 @@ export const zCreateBioPath = z.object({
 });
 
 export const zCreateBioQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28134,7 +28134,7 @@ export const zDeleteBioListPath = z.object({
 });
 
 export const zDeleteBioListQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28153,7 +28153,7 @@ export const zGetBioPath = z.object({
 });
 
 export const zGetBioQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28174,7 +28174,7 @@ export const zUpdateBioPath = z.object({
 });
 
 export const zUpdateBioQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28192,7 +28192,7 @@ export const zGetProductsPath = z.object({
 });
 
 export const zGetProductsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     limit: z.int().lte(50).optional().default(10),
     offset: z.int().optional().default(0)
 });
@@ -28217,7 +28217,7 @@ export const zCreateProductPath = z.object({
 });
 
 export const zCreateProductQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28238,7 +28238,7 @@ export const zDeleteProductListPath = z.object({
 });
 
 export const zDeleteProductListQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28257,7 +28257,7 @@ export const zGetProductPath = z.object({
 });
 
 export const zGetProductQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28278,7 +28278,7 @@ export const zUpdateProductPath = z.object({
 });
 
 export const zUpdateProductQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28296,7 +28296,7 @@ export const zGetEventsPath = z.object({
 });
 
 export const zGetEventsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     limit: z.int().lte(50).optional().default(10),
     offset: z.int().optional().default(0)
 });
@@ -28321,7 +28321,7 @@ export const zCreateEventPath = z.object({
 });
 
 export const zCreateEventQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28342,7 +28342,7 @@ export const zDeleteEventListPath = z.object({
 });
 
 export const zDeleteEventListQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28361,7 +28361,7 @@ export const zGetEventPath = z.object({
 });
 
 export const zGetEventQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28382,7 +28382,7 @@ export const zUpdateEventPath = z.object({
 });
 
 export const zUpdateEventQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28396,7 +28396,7 @@ export const zUpdateEventResponse = z.object({
 });
 
 export const zGetBusinessCategoriesQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     language: z.string().optional(),
     country: z.string().optional(),
     entityType: z.enum([
@@ -28424,7 +28424,7 @@ export const zGetGoogleKeywordsQuery = z.object({
     clientCategoryId: z.string().optional(),
     entityId: z.string().optional(),
     countryCode: z.string().optional(),
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28444,7 +28444,7 @@ export const zGetCustomFieldsPath = z.object({
 });
 
 export const zGetCustomFieldsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     offset: z.int().optional().default(0),
     limit: z.int().lte(1000).optional().default(100),
     pageToken: z.string().optional()
@@ -28471,7 +28471,7 @@ export const zCreateCustomFieldPath = z.object({
 });
 
 export const zCreateCustomFieldQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28492,7 +28492,7 @@ export const zDeleteCustomFieldPath = z.object({
 });
 
 export const zDeleteCustomFieldQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28511,7 +28511,7 @@ export const zGetCustomFieldPath = z.object({
 });
 
 export const zGetCustomFieldQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28532,7 +28532,7 @@ export const zUpdateCustomFieldPath = z.object({
 });
 
 export const zUpdateCustomFieldQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28553,7 +28553,7 @@ export const zGetLanguageProfilesPath = z.object({
 });
 
 export const zGetLanguageProfilesQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     resolvePlaceholders: z.boolean().optional().default(false)
 });
 
@@ -28576,7 +28576,7 @@ export const zDeleteLocationLanguageProfilePath = z.object({
 });
 
 export const zDeleteLocationLanguageProfileQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28596,7 +28596,7 @@ export const zGetLocationLanguageProfilePath = z.object({
 });
 
 export const zGetLocationLanguageProfileQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     resolvePlaceholders: z.boolean().optional().default(false)
 });
 
@@ -28619,7 +28619,7 @@ export const zUpsertLocationLanguageProfilePath = z.object({
 });
 
 export const zUpsertLocationLanguageProfileQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     primary: z.boolean().optional()
 });
 
@@ -28639,7 +28639,7 @@ export const zListPublisherDisruptionsPath = z.object({
 });
 
 export const zListPublisherDisruptionsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     'filter.severities': z.array(z.enum([
         'CRITICAL',
         'HIGH',
@@ -28682,7 +28682,7 @@ export const zListPublisherDisruptionStatusUpdatesPath = z.object({
 });
 
 export const zListPublisherDisruptionStatusUpdatesQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     pageSize: z.int().gte(0).lte(1000).optional().default(50),
     pageToken: z.string().optional(),
     languageCode: z.string().optional()
@@ -28709,7 +28709,7 @@ export const zListPublishersPath = z.object({
 });
 
 export const zListPublishersQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     subset: z.string().optional().default('RELEVANT_ONLY'),
     entityType: z.array(z.enum([
         'LOCATION',
@@ -28739,7 +28739,7 @@ export const zListListingAccuracyPath = z.object({
 });
 
 export const zListListingAccuracyQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     entityId: z.string(),
     publisherIds: z.array(z.string()).optional()
 });
@@ -28761,7 +28761,7 @@ export const zListListingsPath = z.object({
 });
 
 export const zListListingsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     limit: z.int().lte(100).optional().default(100),
     offset: z.int().optional().default(0),
     pageToken: z.string().optional(),
@@ -28797,7 +28797,7 @@ export const zOptInListingsPath = z.object({
 });
 
 export const zOptInListingsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     locationIds: z.array(z.string()).optional(),
     publisherIds: z.array(z.string()).optional()
 });
@@ -28817,7 +28817,7 @@ export const zOptOutListingsPath = z.object({
 });
 
 export const zOptOutListingsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     locationIds: z.array(z.string()).optional(),
     publisherIds: z.array(z.string()).optional()
 });
@@ -28837,7 +28837,7 @@ export const zConfirmSyncListingsPath = z.object({
 });
 
 export const zConfirmSyncListingsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     locationIds: z.array(z.string()).optional(),
     publisherIds: z.array(z.string()).optional(),
     pageToken: z.string().optional()
@@ -28860,7 +28860,7 @@ export const zForceSyncListingsPath = z.object({
 });
 
 export const zForceSyncListingsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     locationIds: z.array(z.string()).optional(),
     publisherIds: z.array(z.string()).optional()
 });
@@ -28880,7 +28880,7 @@ export const zListPublisherSuggestionsPath = z.object({
 });
 
 export const zListPublisherSuggestionsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     limit: z.int().lte(50).optional().default(10),
     offset: z.int().optional().default(0),
     locationIds: z.array(z.string()).optional(),
@@ -28912,7 +28912,7 @@ export const zGetPublisherSuggestionPath = z.object({
 });
 
 export const zGetPublisherSuggestionQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -28931,7 +28931,7 @@ export const zUpdatePublisherSuggestionPath = z.object({
 });
 
 export const zUpdatePublisherSuggestionQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     status: z.enum(['ACCEPTED', 'REJECTED'])
 });
 
@@ -28950,7 +28950,7 @@ export const zListDuplicatesPath = z.object({
 });
 
 export const zListDuplicatesQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     limit: z.int().lte(50).optional().default(10),
     offset: z.int().optional().default(0),
     locationIds: z.array(z.string()).optional(),
@@ -28981,7 +28981,7 @@ export const zCreateDuplicatePath = z.object({
 });
 
 export const zCreateDuplicateQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     locationId: z.string().optional(),
     publisherId: z.string(),
     url: z.string()
@@ -29005,7 +29005,7 @@ export const zDeleteDuplicatePath = z.object({
 });
 
 export const zDeleteDuplicateQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29024,7 +29024,7 @@ export const zSuppressDuplicatePath = z.object({
 });
 
 export const zSuppressDuplicateQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29044,7 +29044,7 @@ export const zListMethodsPath = z.object({
 });
 
 export const zListMethodsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     entityIds: z.string().optional(),
     pageToken: z.string().optional(),
     limit: z.int().optional().default(100),
@@ -29071,7 +29071,7 @@ export const zListStatusesPath = z.object({
 });
 
 export const zListStatusesQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     entityIds: z.string().optional(),
     pageToken: z.string().optional(),
     limit: z.int().optional().default(100),
@@ -29101,7 +29101,7 @@ export const zInitiateVerificationPath = z.object({
 });
 
 export const zInitiateVerificationQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29125,7 +29125,7 @@ export const zCompleteVerificationPath = z.object({
 });
 
 export const zCompleteVerificationQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29147,7 +29147,7 @@ export const zListAdminsPath = z.object({
 });
 
 export const zListAdminsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     entityIds: z.string().optional(),
     pageToken: z.string().optional(),
     limit: z.int().optional().default(100),
@@ -29176,7 +29176,7 @@ export const zInviteAdminsPath = z.object({
 });
 
 export const zInviteAdminsQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29197,7 +29197,7 @@ export const zListEntityListingsPath = z.object({
 });
 
 export const zListEntityListingsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     entityIds: z.array(z.string()).optional(),
     publisherIds: z.array(z.string()).optional(),
     statuses: z.array(z.enum([
@@ -29237,7 +29237,7 @@ export const zDeleteListingsPath = z.object({
 });
 
 export const zDeleteListingsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     entityIds: z.array(z.string()).optional(),
     publisherIds: z.array(z.string()).optional()
 });
@@ -29257,7 +29257,7 @@ export const zListQuestionsPath = z.object({
 });
 
 export const zListQuestionsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     filter: z.string().optional(),
     limit: z.int().lte(50).optional().default(10),
     offset: z.int().optional().default(0),
@@ -29284,7 +29284,7 @@ export const zGetQuestionPath = z.object({
 });
 
 export const zGetQuestionQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29302,7 +29302,7 @@ export const zGetCatalogPath = z.object({
 });
 
 export const zGetCatalogQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29322,7 +29322,7 @@ export const zGetMaxDatesPath = z.object({
 });
 
 export const zGetMaxDatesQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29348,7 +29348,7 @@ export const zCreateReportsPath = z.object({
 });
 
 export const zCreateReportsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     async: z.boolean().optional(),
     callback: z.string().optional()
 });
@@ -29372,7 +29372,7 @@ export const zReportStatusPath = z.object({
 });
 
 export const zReportStatusQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29397,7 +29397,7 @@ export const zGetTablesPath = z.object({
 });
 
 export const zGetTablesQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     api_key: z.string()
 });
 
@@ -29421,7 +29421,7 @@ export const zGetTablePath = z.object({
 });
 
 export const zGetTableQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     api_key: z.string()
 });
 
@@ -29452,7 +29452,7 @@ export const zPostQueryPath = z.object({
 });
 
 export const zPostQueryQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     api_key: z.string()
 });
 
@@ -29474,7 +29474,7 @@ export const zListReviewsPath = z.object({
 });
 
 export const zListReviewsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     limit: z.int().lte(100).optional().default(10),
     offset: z.int().lte(9900).optional().default(0),
     entityIds: z.array(z.string()).optional(),
@@ -29533,7 +29533,7 @@ export const zCreateReviewPath = z.object({
 });
 
 export const zCreateReviewQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29554,7 +29554,7 @@ export const zGetReviewPath = z.object({
 });
 
 export const zGetReviewQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29575,7 +29575,7 @@ export const zUpdateReviewPath = z.object({
 });
 
 export const zUpdateReviewQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29598,7 +29598,7 @@ export const zCreateCommentPath = z.object({
 });
 
 export const zCreateCommentQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 export const zCreateCommentResponse = z.union([
@@ -29620,7 +29620,7 @@ export const zGenerateCommentPath = z.object({
 });
 
 export const zGenerateCommentQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29642,7 +29642,7 @@ export const zDeleteCommentPath = z.object({
 });
 
 export const zDeleteCommentQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 export const zDeleteCommentResponse = z.union([
@@ -29665,7 +29665,7 @@ export const zUpdateCommentPath = z.object({
 });
 
 export const zUpdateCommentQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 export const zUpdateCommentResponse = z.union([
@@ -29684,7 +29684,7 @@ export const zListReviewInvitationsPath = z.object({
 });
 
 export const zListReviewInvitationsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     limit: z.int().lte(100).optional().default(10),
     offset: z.int().lte(9900).optional().default(0),
     pageToken: z.string().optional(),
@@ -29725,7 +29725,7 @@ export const zCreateReviewInvitesPath = z.object({
 });
 
 export const zCreateReviewInvitesQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29744,7 +29744,7 @@ export const zDeleteInvitationPath = z.object({
 });
 
 export const zDeleteInvitationQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29763,7 +29763,7 @@ export const zGetReviewInvitationPath = z.object({
 });
 
 export const zGetReviewInvitationQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29784,7 +29784,7 @@ export const zUpdateReviewInvitationPath = z.object({
 });
 
 export const zUpdateReviewInvitationQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29805,7 +29805,7 @@ export const zUpdateReviewLabelsPath = z.object({
 });
 
 export const zUpdateReviewLabelsQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29826,7 +29826,7 @@ export const zGetReviewGenerationSettingsPath = z.object({
 });
 
 export const zGetReviewGenerationSettingsQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29846,7 +29846,7 @@ export const zUpdateReviewGenerationSettingsPath = z.object({
 });
 
 export const zUpdateReviewGenerationSettingsQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29864,7 +29864,7 @@ export const zListReviewWorkflowRulesPath = z.object({
 });
 
 export const zListReviewWorkflowRulesQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     pageSize: z.int().lte(25).optional().default(25),
     pageToken: z.string().optional(),
     filter: z.string().optional()
@@ -29890,7 +29890,7 @@ export const zCreateReviewWorkflowRulePath = z.object({
 });
 
 export const zCreateReviewWorkflowRuleQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29909,7 +29909,7 @@ export const zDeleteReviewWorkflowRulePath = z.object({
 });
 
 export const zDeleteReviewWorkflowRuleQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29928,7 +29928,7 @@ export const zGetReviewWorkflowRulePath = z.object({
 });
 
 export const zGetReviewWorkflowRuleQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -29949,7 +29949,7 @@ export const zUpdateReviewWorkflowRulePath = z.object({
 });
 
 export const zUpdateReviewWorkflowRuleQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     updateMask: z.string()
 });
 
@@ -29968,7 +29968,7 @@ export const zListPostsPath = z.object({
 });
 
 export const zListPostsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     pageToken: z.string().optional(),
     postIds: z.array(z.string()).optional(),
     entityPostIds: z.array(z.string()).optional(),
@@ -30003,7 +30003,7 @@ export const zCreatePostsPath = z.object({
 });
 
 export const zCreatePostsQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30022,7 +30022,7 @@ export const zDeletePostPath = z.object({
 });
 
 export const zDeletePostQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30041,7 +30041,7 @@ export const zGetPostPath = z.object({
 });
 
 export const zGetPostQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30062,7 +30062,7 @@ export const zUpdatePostPath = z.object({
 });
 
 export const zUpdatePostQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30082,7 +30082,7 @@ export const zGeneratePostTextPath = z.object({
 });
 
 export const zGeneratePostTextQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30103,7 +30103,7 @@ export const zDeleteEntityPostPath = z.object({
 });
 
 export const zDeleteEntityPostQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30122,7 +30122,7 @@ export const zGetEntityPostCommentsPath = z.object({
 });
 
 export const zGetEntityPostCommentsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     pageToken: z.string().optional()
 });
 
@@ -30150,7 +30150,7 @@ export const zCreateEntityPostCommentPath = z.object({
 });
 
 export const zCreateEntityPostCommentQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30174,7 +30174,7 @@ export const zDeleteEntityPostCommentPath = z.object({
 });
 
 export const zDeleteEntityPostCommentQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30194,7 +30194,7 @@ export const zUploadVideoPath = z.object({
 });
 
 export const zUploadVideoQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30216,7 +30216,7 @@ export const zSocialEligibilityPath = z.object({
 });
 
 export const zSocialEligibilityQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     publishers: z.array(z.enum([
         'APPLE',
         'INSTAGRAM',
@@ -30251,7 +30251,7 @@ export const zGetSocialConversationPath = z.object({
 });
 
 export const zGetSocialConversationQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     pageToken: z.string().optional(),
     entityId: z.string(),
     publisher: z.enum(['INSTAGRAM', 'FACEBOOK']),
@@ -30281,7 +30281,7 @@ export const zListSocialMessagesPath = z.object({
 });
 
 export const zListSocialMessagesQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     pageToken: z.string().optional(),
     entityIds: z.array(z.string()).optional(),
     publishers: z.array(z.enum(['INSTAGRAM', 'FACEBOOK'])).optional(),
@@ -30318,7 +30318,7 @@ export const zCreateSocialMessagesPath = z.object({
 });
 
 export const zCreateSocialMessagesQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     pageToken: z.string().optional()
 });
 
@@ -30339,7 +30339,7 @@ export const zGetRolesPath = z.object({
 });
 
 export const zGetRolesQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30360,7 +30360,7 @@ export const zGetUsersPath = z.object({
 });
 
 export const zGetUsersQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     offset: z.int().optional().default(0)
 });
 
@@ -30384,7 +30384,7 @@ export const zCreateUserPath = z.object({
 });
 
 export const zCreateUserQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30405,7 +30405,7 @@ export const zDeleteUserPath = z.object({
 });
 
 export const zDeleteUserQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30424,7 +30424,7 @@ export const zGetUserPath = z.object({
 });
 
 export const zGetUserQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30445,7 +30445,7 @@ export const zUpdateUserPath = z.object({
 });
 
 export const zUpdateUserQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30468,7 +30468,7 @@ export const zUpdateUserPasswordPath = z.object({
 });
 
 export const zUpdateUserPasswordQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30482,7 +30482,7 @@ export const zUpdateUserPasswordResponse = z.object({
 });
 
 export const zListAccountsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     name: z.string().optional(),
     limit: z.int().lte(1000).optional().default(100),
     offset: z.int().optional().default(0)
@@ -30506,7 +30506,7 @@ export const zGetAccountPath = z.object({
 });
 
 export const zGetAccountQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30524,7 +30524,7 @@ export const zGetApprovalGroupsPath = z.object({
 });
 
 export const zGetApprovalGroupsQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30548,7 +30548,7 @@ export const zCreateApprovalGroupPath = z.object({
 });
 
 export const zCreateApprovalGroupQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30569,7 +30569,7 @@ export const zDeleteApprovalGroupPath = z.object({
 });
 
 export const zDeleteApprovalGroupQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30588,7 +30588,7 @@ export const zGetApprovalGroupPath = z.object({
 });
 
 export const zGetApprovalGroupQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30609,7 +30609,7 @@ export const zUpdateApprovalGroupPath = z.object({
 });
 
 export const zUpdateApprovalGroupQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30635,7 +30635,7 @@ export const zListLinkedAccountsQuery = z.object({
     pageToken: z.string().optional(),
     limit: z.int().lte(50).optional().default(10),
     offset: z.int().optional().default(0),
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30658,7 +30658,7 @@ export const zGetLinkedAccountPath = z.object({
 });
 
 export const zGetLinkedAccountQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30676,7 +30676,7 @@ export const zGetOptimizationTasksPath = z.object({
 });
 
 export const zGetOptimizationTasksQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     taskIds: z.string().optional(),
     locationIds: z.string().optional()
 });
@@ -30698,7 +30698,7 @@ export const zGetLinkOptimizationTaskPath = z.object({
 });
 
 export const zGetLinkOptimizationTaskQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     taskIds: z.string().optional(),
     locationId: z.string().optional(),
     mode: z.enum([
@@ -30725,7 +30725,7 @@ export const zListAssetsPath = z.object({
 });
 
 export const zListAssetsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     offset: z.int().optional().default(0),
     limit: z.int().lte(1000).optional().default(100),
     pageToken: z.string().optional(),
@@ -30753,7 +30753,7 @@ export const zCreateAssetPath = z.object({
 });
 
 export const zCreateAssetQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     format: z.string().min(0).default('markdown')
 });
 
@@ -30775,7 +30775,7 @@ export const zDeleteAssetPath = z.object({
 });
 
 export const zDeleteAssetQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30794,7 +30794,7 @@ export const zGetAssetPath = z.object({
 });
 
 export const zGetAssetQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     format: z.string().min(0).default('markdown')
 });
 
@@ -30816,7 +30816,7 @@ export const zUpdateAssetPath = z.object({
 });
 
 export const zUpdateAssetQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     format: z.string().min(0).default('markdown')
 });
 
@@ -30843,7 +30843,7 @@ export const zPushDataPath = z.object({
 });
 
 export const zPushDataQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     runMode: z.enum([
         'DEFAULT',
         'COMPREHENSIVE',
@@ -30871,7 +30871,7 @@ export const zTriggerConnectorPath = z.object({
 });
 
 export const zTriggerConnectorQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     runMode: z.enum([
         'DEFAULT',
         'COMPREHENSIVE',
@@ -30901,7 +30901,7 @@ export const zGetConnectorRunPath = z.object({
 });
 
 export const zGetConnectorRunQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30946,7 +30946,7 @@ export const zApproveRunPath = z.object({
 });
 
 export const zApproveRunQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30969,7 +30969,7 @@ export const zCancelRunPath = z.object({
 });
 
 export const zCancelRunQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -30990,7 +30990,7 @@ export const zListSuggestionsPath = z.object({
 });
 
 export const zListSuggestionsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     format: z.string().min(0).optional().default('markdown'),
     entityIds: z.string().min(0).optional(),
     entityUids: z.string().min(0).optional(),
@@ -31024,7 +31024,7 @@ export const zUpsertSuggestionPath = z.object({
 });
 
 export const zUpsertSuggestionQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     format: z.string().min(0).optional().default('markdown')
 });
 
@@ -31046,7 +31046,7 @@ export const zCancelSuggestionPath = z.object({
 });
 
 export const zCancelSuggestionQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -31067,7 +31067,7 @@ export const zGetSuggestionPath = z.object({
 });
 
 export const zGetSuggestionQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     format: z.string().min(0).optional().default('markdown')
 });
 
@@ -31096,7 +31096,7 @@ export const zCommentSuggestionPath = z.object({
 });
 
 export const zCommentSuggestionQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -31120,7 +31120,7 @@ export const zUpdateSuggestionPath = z.object({
 });
 
 export const zUpdateSuggestionQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     format: z.string().min(0).optional().default('markdown')
 });
 
@@ -31143,7 +31143,7 @@ export const zListResourceConfigNamesPath = z.object({
 });
 
 export const zListResourceConfigNamesQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -31164,7 +31164,7 @@ export const zGetResourceConfigurationPath = z.object({
 });
 
 export const zGetResourceConfigurationQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -31187,7 +31187,7 @@ export const zPatchResourceConfigPath = z.object({
 });
 
 export const zPatchResourceConfigQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -31210,7 +31210,7 @@ export const zUpdateResourceConfigPath = z.object({
 });
 
 export const zUpdateResourceConfigQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -31232,7 +31232,7 @@ export const zCreateResourceConfigPath = z.object({
 });
 
 export const zCreateResourceConfigQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -31252,7 +31252,7 @@ export const zDeleteLicenseAssignmentPath = z.object({
 });
 
 export const zDeleteLicenseAssignmentQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     api_key: z.string()
 });
 
@@ -31273,7 +31273,7 @@ export const zCreateLicenseAssignmentPath = z.object({
 });
 
 export const zCreateLicenseAssignmentQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     api_key: z.string()
 });
 
@@ -31296,7 +31296,7 @@ export const zUpdateLicenseAssignmentPath = z.object({
 });
 
 export const zUpdateLicenseAssignmentQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     api_key: z.string()
 });
 
@@ -31315,7 +31315,7 @@ export const zListLicensePacksPath = z.object({
 });
 
 export const zListLicensePacksQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     api_key: z.string(),
     pageSize: z.int().optional(),
     pageToken: z.string().optional()
@@ -31337,7 +31337,7 @@ export const zListLicenseAssignmentsPath = z.object({
 });
 
 export const zListLicenseAssignmentsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     api_key: z.string(),
     pageSize: z.int().optional(),
     pageToken: z.string().optional(),
@@ -31359,7 +31359,7 @@ export const zListOperationsPath = z.object({
 });
 
 export const zListOperationsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     api_key: z.string(),
     pageSize: z.string().optional(),
     pageToken: z.string().optional()
@@ -31391,7 +31391,7 @@ export const zCreateOperationPath = z.object({
 });
 
 export const zCreateOperationQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     api_key: z.string()
 });
 
@@ -31411,7 +31411,7 @@ export const zGetOperationPath = z.object({
 });
 
 export const zGetOperationQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     api_key: z.string()
 });
 
@@ -31431,7 +31431,7 @@ export const zCancelOperationPath = z.object({
 });
 
 export const zCancelOperationQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     api_key: z.string()
 });
 
@@ -31440,7 +31440,7 @@ export const zListDomainsPath = z.object({
 });
 
 export const zListDomainsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     hostname: z.array(z.string()).optional(),
     hostname_search: z.string().optional(),
     show_deleted: z.boolean().optional().default(false),
@@ -31638,7 +31638,7 @@ export const zCreateDomainPath = z.object({
 });
 
 export const zCreateDomainQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -31738,7 +31738,7 @@ export const zDeleteDomainPath = z.object({
 });
 
 export const zDeleteDomainQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     force: z.boolean().optional().default(false)
 });
 
@@ -31755,7 +31755,7 @@ export const zGetDomainPath = z.object({
 });
 
 export const zGetDomainQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     view: z.enum(['FULL', 'BASIC']).optional().default('FULL')
 });
 
@@ -31864,7 +31864,7 @@ export const zUpdateDomainPath = z.object({
 });
 
 export const zUpdateDomainQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     force_move: z.boolean().optional().default(false),
     update_mask: z.array(z.enum([
         '*',
@@ -31971,7 +31971,7 @@ export const zMigratePagesDomainPath = z.object({
 });
 
 export const zMigratePagesDomainQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -32084,7 +32084,7 @@ export const zListDomainAssociationsPath = z.object({
 });
 
 export const zListDomainAssociationsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     referenced_resources: z.array(z.string()).optional(),
     page_size: z.int().gte(0).lte(50).optional().default(10),
     page_token: z.string().optional()
@@ -32131,7 +32131,7 @@ export const zCreateDomainAssociationPath = z.object({
 });
 
 export const zCreateDomainAssociationQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     force_move: z.boolean().optional().default(false)
 });
 
@@ -32160,7 +32160,7 @@ export const zDeleteDomainAssociationPath = z.object({
 });
 
 export const zDeleteDomainAssociationQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -32177,7 +32177,7 @@ export const zGetDomainAssociationPath = z.object({
 });
 
 export const zGetDomainAssociationQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -32209,7 +32209,7 @@ export const zUpdateDomainAssociationPath = z.object({
 });
 
 export const zUpdateDomainAssociationQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -32235,7 +32235,7 @@ export const zListManagedCsrsPath = z.object({
 });
 
 export const zListManagedCsrsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     page_size: z.int().gte(0).lte(50).optional().default(10),
     page_token: z.string().optional(),
     view: z.enum(['FULL', 'BASIC']).optional().default('BASIC')
@@ -32289,7 +32289,7 @@ export const zCreateManagedCsrPath = z.object({
 });
 
 export const zCreateManagedCsrQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -32320,7 +32320,7 @@ export const zDeleteManagedCsrPath = z.object({
 });
 
 export const zDeleteManagedCsrQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -32336,7 +32336,7 @@ export const zGetManagedCsrPath = z.object({
 });
 
 export const zGetManagedCsrQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     view: z.enum(['FULL', 'BASIC']).optional().default('FULL')
 });
 

@@ -14,6 +14,7 @@ export * as publisherNotifyReview from "./publisher-notify-review/index.js";
 export * as publisherTrackingPixel from "./publisher-tracking-pixel/index.js";
 export * as webhooks from "./webhooks/index.js";
 
-// Auth + client configuration helpers (hand-written).
+// Auth, configuration, and error helpers (hand-written).
 export * from "./auth.js";
 export * from "./configure.js";
+export * from "./errors.js";

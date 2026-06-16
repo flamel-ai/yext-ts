@@ -123,11 +123,11 @@ export type MessageData = {
          */
         botId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/chat/{botId}/message';
 };

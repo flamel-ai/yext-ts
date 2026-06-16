@@ -392,7 +392,7 @@ export const getResourcesApplyRequestStatus = <ThrowOnError extends boolean = fa
  *
  * List all accounts that you have access to. Unless you are in Partner Portal mode, this will only be your own account.
  */
-export const listAccounts = <ThrowOnError extends boolean = false>(options: Options<ListAccountsData, ThrowOnError>): RequestResult<ListAccountsResponses, ListAccountsErrors, ThrowOnError> => (options.client ?? client).get<ListAccountsResponses, ListAccountsErrors, ThrowOnError>({
+export const listAccounts = <ThrowOnError extends boolean = false>(options?: Options<ListAccountsData, ThrowOnError>): RequestResult<ListAccountsResponses, ListAccountsErrors, ThrowOnError> => (options?.client ?? client).get<ListAccountsResponses, ListAccountsErrors, ThrowOnError>({
     responseValidator: async (data) => await zListAccountsResponse.parseAsync(data),
     security: [{
             in: 'query',

@@ -110,6 +110,48 @@ if (!result.success) console.error(result.error);
 
 Response bodies are validated against these schemas automatically. Request bodies are **not** validated client-side (the API validates them), which is what lets auth + version inject transparently.
 
+## Error handling
+
+Yext doesn't signal every problem with the HTTP status. Each response carries a `meta` envelope, and problems are listed in `meta.errors[]`, each tagged with a `type` ([docs](https://hitchhikers.yext.com/docs/managementapis/introduction/errors)):
+
+| `type` | HTTP | Meaning |
+|---|---|---|
+| `WARNING` | 200 | Accepted, but didn't follow best practices |
+| `NON_FATAL_ERROR` | 207 | Some item/field rejected, others succeeded |
+| `FATAL_ERROR` | 400 / 401 / 403 / 409 / 5xx | The whole request was rejected |
+
+So a warning rides along on a `200` and a non-fatal error on a `207` — checking `response.ok` alone misses both. SDK calls return `{ data, error, response }` (no throw by default); these helpers read `meta.errors` from either body:
+
+```ts
+import { getYextErrors, getYextWarnings, hasYextErrors, assertYextOk, YextApiError } from "yext-ts";
+import { createEntity } from "yext-ts/knowledge";
+
+const result = await createEntity({ path: { accountId: "me" }, query: {}, body: { /* ... */ } });
+
+for (const w of getYextWarnings(result)) console.warn(`Yext warning ${w.code}: ${w.message}`);
+
+if (hasYextErrors(result)) {
+  // FATAL_ERROR, NON_FATAL_ERROR (207), a >= 400 status, or a populated `error` body
+  const errors = getYextErrors(result);
+  // handle...
+}
+```
+
+Prefer throwing? `assertYextOk` returns the result on success (warnings don't throw) and throws a `YextApiError` — carrying `status`, `uuid`, and the parsed `issues[]` — otherwise:
+
+```ts
+try {
+  const { data } = assertYextOk(await getEntity({ path: { accountId: "me", entityId: "loc-1" }, query: {} }));
+  // data is the validated success body
+} catch (err) {
+  if (err instanceof YextApiError) {
+    console.error(err.status, err.uuid, err.issues); // 404, "uuid…", [{ code, type, message }]
+  }
+}
+```
+
+Success-response **bodies are validated** against the generated zod schemas automatically; if Yext returns a body that doesn't match the spec, the SDK surfaces a zod error in `result.error`.
+
 ## Per-call overrides
 
 Anything you pass on a call wins over the injected defaults — e.g. pass `query: { v: "20240101" }` to pin a different version for one request, or `auth`/`baseUrl` via the client config.

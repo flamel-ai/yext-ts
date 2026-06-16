@@ -7979,7 +7979,7 @@ export const zListAvailableServicesPath = z.object({
 });
 
 export const zListAvailableServicesQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8002,7 +8002,7 @@ export const zCreateNewLocationAddRequestPath = z.object({
 });
 
 export const zCreateNewLocationAddRequestQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8022,7 +8022,7 @@ export const zCreateExistingLocationAddRequestPath = z.object({
 });
 
 export const zCreateExistingLocationAddRequestQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8042,7 +8042,7 @@ export const zCreateExistingSubAccountAddRequestPath = z.object({
 });
 
 export const zCreateExistingSubAccountAddRequestQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8062,7 +8062,7 @@ export const zCancelServicesPath = z.object({
 });
 
 export const zCancelServicesQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8082,7 +8082,7 @@ export const zCancelSubAccountServicesPath = z.object({
 });
 
 export const zCancelSubAccountServicesQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8102,7 +8102,7 @@ export const zCancelAllSubAccountServicesPath = z.object({
 });
 
 export const zCancelAllSubAccountServicesQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8122,7 +8122,7 @@ export const zCreateProcessReviewAddRequestPath = z.object({
 });
 
 export const zCreateProcessReviewAddRequestQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8140,7 +8140,7 @@ export const zListAddRequestsPath = z.object({
 });
 
 export const zListAddRequestsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     status: z.enum([
         'SUBMITTED',
         'PROCESSING',
@@ -8179,7 +8179,7 @@ export const zGetAddRequestPath = z.object({
 });
 
 export const zGetAddRequestQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8197,7 +8197,7 @@ export const zListSubAccountAddRequestsPath = z.object({
 });
 
 export const zListSubAccountAddRequestsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     status: z.enum([
         'SUBMITTED',
         'PROCESSING',
@@ -8235,7 +8235,7 @@ export const zGetSubAccountAddRequestPath = z.object({
 });
 
 export const zGetSubAccountAddRequestQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8253,7 +8253,7 @@ export const zListServicesPath = z.object({
 });
 
 export const zListServicesQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     sku: z.string().optional(),
     locationId: z.string().optional(),
     locationAccountId: z.string().optional(),
@@ -8285,7 +8285,7 @@ export const zListSubAccountServicesPath = z.object({
 });
 
 export const zListSubAccountServicesQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     sku: z.string().optional(),
     subAccountId: z.string().optional(),
     status: z.enum([
@@ -8318,7 +8318,7 @@ export const zCreateSubAccountPath = z.object({
 });
 
 export const zCreateSubAccountQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8338,7 +8338,7 @@ export const zResourcesApplyRequestPath = z.object({
 });
 
 export const zResourcesApplyRequestQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8357,7 +8357,7 @@ export const zGetResourcesApplyRequestStatusPath = z.object({
 });
 
 export const zGetResourcesApplyRequestStatusQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8371,7 +8371,7 @@ export const zGetResourcesApplyRequestStatusResponse = z.object({
 });
 
 export const zListAccountsQuery = z.object({
-    v: z.string(),
+    v: z.string().optional(),
     name: z.string().optional(),
     limit: z.int().lte(1000).optional().default(100),
     offset: z.int().optional().default(0)
@@ -8395,7 +8395,7 @@ export const zGetAccountPath = z.object({
 });
 
 export const zGetAccountQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**
@@ -8415,7 +8415,7 @@ export const zUpdateAccountPath = z.object({
 });
 
 export const zUpdateAccountQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**

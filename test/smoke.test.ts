@@ -1,11 +1,16 @@
 import { describe, expect, it, vi } from "vitest";
 
 import {
+  assertYextOk,
   buildYextAuthorizeUrl,
   configureYext,
   configureYextClient,
   createYextFetch,
   DEFAULT_API_VERSION,
+  getYextErrors,
+  getYextWarnings,
+  hasYextErrors,
+  YextApiError,
   yextClients,
 } from "../src/index.js";
 import { getEntity, listEntities, schemas, client as knowledgeClient } from "../src/knowledge/index.js";
@@ -138,6 +143,47 @@ describe("OAuth authorize URL", () => {
       buildYextAuthorizeUrl({ clientId: "c", redirectUri: "https://x/cb", environment: "sandbox" }),
     );
     expect(url.origin + url.pathname).toBe("https://sandbox.yext.com/oauth2/authorize");
+  });
+});
+
+describe("error handling", () => {
+  const warningResult = {
+    response: { status: 200, ok: true },
+    data: { meta: { uuid: "u1", errors: [{ code: 1, type: "WARNING", message: "best practice" }] }, response: {} },
+  };
+  const nonFatalResult = {
+    response: { status: 207, ok: true },
+    data: { meta: { uuid: "u2", errors: [{ code: 2, type: "NON_FATAL_ERROR", message: "item rejected" }] }, response: {} },
+  };
+  const fatalResult = {
+    response: { status: 400, ok: false },
+    error: { meta: { uuid: "u3", errors: [{ code: 3, type: "FATAL_ERROR", message: "bad request" }] } },
+  };
+
+  it("separates warnings from blocking errors", () => {
+    expect(getYextWarnings(warningResult).map((i) => i.message)).toEqual(["best practice"]);
+    expect(getYextErrors(warningResult)).toHaveLength(0);
+    expect(hasYextErrors(warningResult)).toBe(false);
+  });
+
+  it("treats 207 NON_FATAL_ERROR as a blocking error", () => {
+    expect(hasYextErrors(nonFatalResult)).toBe(true);
+    expect(getYextErrors(nonFatalResult)).toHaveLength(1);
+  });
+
+  it("assertYextOk passes warnings through but throws on errors", () => {
+    expect(assertYextOk(warningResult)).toBe(warningResult);
+    expect(() => assertYextOk(fatalResult)).toThrow(YextApiError);
+    try {
+      assertYextOk(fatalResult);
+    } catch (err) {
+      expect(err).toBeInstanceOf(YextApiError);
+      const e = err as YextApiError;
+      expect(e.status).toBe(400);
+      expect(e.uuid).toBe("u3");
+      expect(e.issues[0]?.code).toBe(3);
+      expect(e.message).toContain("bad request");
+    }
   });
 });
 

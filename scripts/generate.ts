@@ -102,9 +102,10 @@ function buildRootIndex(): string {
     lines.push(`export * as ${ns} from "./${module}/index.js";`);
   }
   lines.push("");
-  lines.push("// Auth + client configuration helpers (hand-written).");
+  lines.push("// Auth, configuration, and error helpers (hand-written).");
   lines.push('export * from "./auth.js";');
   lines.push('export * from "./configure.js";');
+  lines.push('export * from "./errors.js";');
   lines.push("");
   return lines.join("\n");
 }

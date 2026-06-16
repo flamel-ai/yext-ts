@@ -33934,11 +33934,11 @@ export type ListEntitiesData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Optional parameter to return fields of type **Markdown** as HTML.
          * - `false`: **Markdown** fields will be returned as JSON
@@ -43183,7 +43183,7 @@ export type CreateEntityData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The formatting language used to parse rich text field values. Present and **required** if an only if the request contains a field with type "**Rich Text**."
          *
@@ -51366,11 +51366,11 @@ export type DeleteEntityData = {
          */
         entityId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/entities/{entityId}';
 };
@@ -51432,11 +51432,11 @@ export type GetEntityData = {
          */
         entityId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Optional parameter to return fields of type **Markdown** as HTML.
          * - `false`: **Markdown** fields will be returned as JSON
@@ -59629,11 +59629,11 @@ export type UpdateEntityData = {
          */
         entityId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The formatting language used to parse rich text field values. Present and **required** if an only if the request contains a field with type "**Rich Text**."
          *
@@ -67809,11 +67809,11 @@ export type ListLanguageProfilesData = {
          */
         entityId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Optional parameter to return fields of type **Markdown** as HTML.
          * - `false`: **Markdown** fields will be returned as JSON
@@ -76019,11 +76019,11 @@ export type ListAllLanguageProfilesData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Optional parameter to return fields of type **Markdown** as HTML.
          * - `false`: **Markdown** fields will be returned as JSON
@@ -85247,11 +85247,11 @@ export type DeleteLanguageProfileData = {
          */
         languageCode: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/entityprofiles/{entityId}/{languageCode}';
 };
@@ -85316,11 +85316,11 @@ export type GetLanguageProfileData = {
          */
         languageCode: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Optional parameter to return fields of type **Markdown** as HTML.
          * - `false`: **Markdown** fields will be returned as JSON
@@ -93516,11 +93516,11 @@ export type UpsertLanguageProfileData = {
          */
         languageCode: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/entityprofiles/{entityId}/{languageCode}';
 };
@@ -101680,11 +101680,11 @@ export type GetLocationsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return.
          */
@@ -101754,11 +101754,11 @@ export type CreateLocationData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/locations';
 };
@@ -101800,11 +101800,11 @@ export type SearchLocationsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return.
          */
@@ -102293,11 +102293,11 @@ export type GetLocationData = {
         accountId: string;
         locationId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Optional parameter to resolve all embedded fields in a Location object response.
          * - `false`: Location object returns placeholder labels, e.g., "Your [[CITY]] store"
@@ -102345,11 +102345,11 @@ export type UpdateLocationData = {
         accountId: string;
         locationId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/locations/{locationId}';
 };
@@ -102391,7 +102391,7 @@ export type GetLocationFoldersData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          *
          * Number of results to skip. Used to page through results.
@@ -102406,7 +102406,7 @@ export type GetLocationFoldersData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/folders';
 };
@@ -102452,11 +102452,11 @@ export type GetMenusData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return.
          */
@@ -102513,11 +102513,11 @@ export type CreateMenuData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/menus';
 };
@@ -102563,11 +102563,11 @@ export type DeleteMenuListData = {
          */
         listId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/menus/{listId}';
 };
@@ -102613,11 +102613,11 @@ export type GetMenuData = {
          */
         listId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/menus/{listId}';
 };
@@ -102661,11 +102661,11 @@ export type UpdateMenuData = {
          */
         listId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/menus/{listId}';
 };
@@ -102705,11 +102705,11 @@ export type GetBiosData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return.
          */
@@ -102766,11 +102766,11 @@ export type CreateBioData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/bios';
 };
@@ -102816,11 +102816,11 @@ export type DeleteBioListData = {
          */
         listId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/bios/{listId}';
 };
@@ -102866,11 +102866,11 @@ export type GetBioData = {
          */
         listId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/bios/{listId}';
 };
@@ -102914,11 +102914,11 @@ export type UpdateBioData = {
          */
         listId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/bios/{listId}';
 };
@@ -102958,11 +102958,11 @@ export type GetProductsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return.
          */
@@ -103019,11 +103019,11 @@ export type CreateProductData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/products';
 };
@@ -103069,11 +103069,11 @@ export type DeleteProductListData = {
          */
         listId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/products/{listId}';
 };
@@ -103119,11 +103119,11 @@ export type GetProductData = {
          */
         listId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/products/{listId}';
 };
@@ -103167,11 +103167,11 @@ export type UpdateProductData = {
          */
         listId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/products/{listId}';
 };
@@ -103211,11 +103211,11 @@ export type GetEventsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return.
          */
@@ -103272,11 +103272,11 @@ export type CreateEventData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/events';
 };
@@ -103322,11 +103322,11 @@ export type DeleteEventListData = {
          */
         listId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/events/{listId}';
 };
@@ -103372,11 +103372,11 @@ export type GetEventData = {
          */
         listId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/events/{listId}';
 };
@@ -103420,11 +103420,11 @@ export type UpdateEventData = {
          */
         listId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/events/{listId}';
 };
@@ -103462,11 +103462,11 @@ export type UpdateEventResponse = UpdateEventResponses[keyof UpdateEventResponse
 export type GetBusinessCategoriesData = {
     body?: never;
     path?: never;
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Only categories that apply to this language will be returned.
          *
@@ -103527,7 +103527,7 @@ export type GetBusinessCategoriesResponse = GetBusinessCategoriesResponses[keyof
 export type GetGoogleKeywordsData = {
     body?: never;
     path?: never;
-    query: {
+    query?: {
         /**
          * The language code corresponding to the language in which the user would like to retrieve the Google Fields. Only categories that apply to this language will be returned.
          *
@@ -103553,7 +103553,7 @@ export type GetGoogleKeywordsData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/googlefields';
 };
@@ -103598,11 +103598,11 @@ export type GetCustomFieldsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          *
          * Number of results to skip. Used to page through results.
@@ -103665,11 +103665,11 @@ export type CreateCustomFieldData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/customfields';
 };
@@ -103717,11 +103717,11 @@ export type DeleteCustomFieldData = {
          */
         customFieldId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/customfields/{customFieldId}';
 };
@@ -103769,11 +103769,11 @@ export type GetCustomFieldData = {
          */
         customFieldId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/customfields/{customFieldId}';
 };
@@ -103819,11 +103819,11 @@ export type UpdateCustomFieldData = {
          */
         customFieldId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/customfields/{customFieldId}';
 };
@@ -103866,11 +103866,11 @@ export type GetLanguageProfilesData = {
         accountId: string;
         locationId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Optional parameter to resolve all embedded fields in a Location object response.
          * - `false`: Location object returns placeholder labels, e.g., "Your [[CITY]] store"
@@ -103924,11 +103924,11 @@ export type DeleteLocationLanguageProfileData = {
          */
         language_code: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/locations/{locationId}/profiles/{language_code}';
 };
@@ -103975,11 +103975,11 @@ export type GetLocationLanguageProfileData = {
          */
         language_code: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Optional parameter to resolve all embedded fields in a Location object response.
          * - `false`: Location object returns placeholder labels, e.g., "Your [[CITY]] store"
@@ -104031,11 +104031,11 @@ export type UpsertLocationLanguageProfileData = {
          */
         language_code: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * When present and set to true, the specified profile will become the location’s primary Language Profile.
          */
@@ -104095,11 +104095,11 @@ export type ListPublisherDisruptionsData = {
          */
         publisherSiteId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Only return disruptions with one of the provided severities.
          *
@@ -104194,11 +104194,11 @@ export type ListPublisherDisruptionStatusUpdatesData = {
          */
         disruptionExternalId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return.
          */
@@ -104268,11 +104268,11 @@ export type ListPublishersData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * One of the following:
          * - ALL - return all publishers
@@ -104332,7 +104332,7 @@ export type ListListingAccuracyData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * ID of the entity to retrieve listing accuracy results for.
          */
@@ -104387,11 +104387,11 @@ export type ListListingsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return
          */
@@ -104513,11 +104513,11 @@ export type OptInListingsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Defaults to all account locations with a Listings subscription.
          *
@@ -104573,11 +104573,11 @@ export type OptOutListingsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Defaults to all account locations with a Listings subscription.
          *
@@ -104633,11 +104633,11 @@ export type ConfirmSyncListingsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Defaults to all account locations with a Listings subscription.
          *
@@ -104704,11 +104704,11 @@ export type ForceSyncListingsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Defaults to all account locations with a Listings subscription.
          *
@@ -104764,11 +104764,11 @@ export type ListPublisherSuggestionsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return
          */
@@ -104847,11 +104847,11 @@ export type GetPublisherSuggestionData = {
         accountId: string;
         suggestionId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/listings/publishersuggestions/{suggestionId}';
 };
@@ -104896,7 +104896,7 @@ export type UpdatePublisherSuggestionData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The status of the Publisher Suggestion
          */
@@ -104942,11 +104942,11 @@ export type ListDuplicatesData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return
          */
@@ -105028,7 +105028,7 @@ export type CreateDuplicateData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * An account location ID with a Listings subscription.
          */
@@ -105080,11 +105080,11 @@ export type DeleteDuplicateData = {
         accountId: string;
         duplicateId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/listings/duplicates/{duplicateId}';
 };
@@ -105127,11 +105127,11 @@ export type SuppressDuplicateData = {
         accountId: string;
         duplicateId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/listings/duplicates/{duplicateId}';
 };
@@ -105178,11 +105178,11 @@ export type ListMethodsData = {
          */
         locale: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          *
          * A comma-separated list of Entity IDs.
@@ -105253,11 +105253,11 @@ export type ListStatusesData = {
         accountId: string;
         publisherId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          *
          * A comma-separated list of Entity IDs.
@@ -105332,11 +105332,11 @@ export type InitiateVerificationData = {
          */
         locale: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/listings/verifications/{publisherId}/{locale}/initiate';
 };
@@ -105386,11 +105386,11 @@ export type CompleteVerificationData = {
         accountId: string;
         publisherId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/listings/verifications/{publisherId}/complete';
 };
@@ -105440,11 +105440,11 @@ export type ListAdminsData = {
         accountId: string;
         publisherId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          *
          * A comma-separated list of Entity IDs.
@@ -105515,11 +105515,11 @@ export type InviteAdminsData = {
         accountId: string;
         publisherId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/listings/admins/{publisherId}/invite';
 };
@@ -105567,11 +105567,11 @@ export type ListEntityListingsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Defaults to all account events with a subscription.
          *
@@ -105684,11 +105684,11 @@ export type DeleteListingsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Defaults to all account events with a subscription.
          *
@@ -105744,11 +105744,11 @@ export type ListQuestionsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * This parameter represents one or more filtering conditions that are applied to the set of entities that would otherwise be returned. This parameter should be provided as a URL-encoded string containing a JSON object.
          *
@@ -106051,11 +106051,11 @@ export type GetQuestionData = {
          */
         questionId: number;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/questions/{questionId}';
 };
@@ -106095,11 +106095,11 @@ export type GetCatalogData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/analytics/catalog';
 };
@@ -106141,11 +106141,11 @@ export type GetMaxDatesData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/analytics/maxdates';
 };
@@ -106197,11 +106197,11 @@ export type CreateReportsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Defaults to false.  When true, the report’s ID will be returned immediately and the report results can be fetched later.  When false, the report results will be returned immediately, but an error may occur if the data requested is too large.
          */
@@ -106277,11 +106277,11 @@ export type ReportStatusData = {
         accountId: string;
         reportId: number;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/analytics/standardreports/{reportId}';
 };
@@ -106331,7 +106331,7 @@ export type GetTablesData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * API Key associated with your App that has access to Logs endpoint.
          */
@@ -106393,7 +106393,7 @@ export type GetTableData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * API Key associated with your App that has access to Logs endpoint.
          */
@@ -106463,7 +106463,7 @@ export type PostQueryData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * API Key associated with your App that has access to Logs endpoint.
          */
@@ -106518,11 +106518,11 @@ export type ListReviewsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return.
          */
@@ -106756,11 +106756,11 @@ export type CreateReviewData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviews';
 };
@@ -106806,11 +106806,11 @@ export type GetReviewData = {
          */
         reviewId: number;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviews/{reviewId}';
 };
@@ -106854,11 +106854,11 @@ export type UpdateReviewData = {
          */
         reviewId: number;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviews/{reviewId}';
 };
@@ -106904,11 +106904,11 @@ export type CreateCommentData = {
          */
         reviewId: number;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviews/{reviewId}/comments';
 };
@@ -106970,11 +106970,11 @@ export type GenerateCommentData = {
          */
         reviewId: number;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviews/{reviewId}/generateComment';
 };
@@ -107021,11 +107021,11 @@ export type DeleteCommentData = {
         reviewId: number;
         commentId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviews/{reviewId}/comments/{commentId}';
 };
@@ -107083,11 +107083,11 @@ export type UpdateCommentData = {
         reviewId: number;
         commentId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviews/{reviewId}/comments/{commentId}';
 };
@@ -107140,11 +107140,11 @@ export type ListReviewInvitationsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return
          */
@@ -107264,11 +107264,11 @@ export type CreateReviewInvitesData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviewinvites';
 };
@@ -107314,11 +107314,11 @@ export type DeleteInvitationData = {
          */
         invitationUid: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviewinvites/{invitationUid}';
 };
@@ -107366,11 +107366,11 @@ export type GetReviewInvitationData = {
          */
         invitationUid: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviewinvites/{invitationUid}';
 };
@@ -107416,11 +107416,11 @@ export type UpdateReviewInvitationData = {
          */
         invitationUid: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviewinvites/{invitationUid}';
 };
@@ -107464,11 +107464,11 @@ export type UpdateReviewLabelsData = {
          */
         reviewId: number;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviews/{reviewId}/labels';
 };
@@ -107517,11 +107517,11 @@ export type GetReviewGenerationSettingsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviews/settings/generation';
 };
@@ -107561,11 +107561,11 @@ export type UpdateReviewGenerationSettingsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviews/settings/generation';
 };
@@ -107605,11 +107605,11 @@ export type ListReviewWorkflowRulesData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The maximum number of workflow rules to return. Defaults to 25.
          */
@@ -107668,11 +107668,11 @@ export type CreateReviewWorkflowRuleData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/workflowRules';
 };
@@ -107716,11 +107716,11 @@ export type DeleteReviewWorkflowRuleData = {
          */
         workflowRuleId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/workflowRules/{workflowRuleId}';
 };
@@ -107766,11 +107766,11 @@ export type GetReviewWorkflowRuleData = {
          */
         workflowRuleId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/workflowRules/{workflowRuleId}';
 };
@@ -107818,7 +107818,7 @@ export type UpdateReviewWorkflowRuleData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Comma-separated list of fields to update on the workflow rule.
          *
@@ -107869,11 +107869,11 @@ export type ListPostsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * If a response to a previous request contained the nextPageToken field,
          * pass that field's value as the pageToken parameter to retrieve the next page of data.
@@ -107956,11 +107956,11 @@ export type CreatePostsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/posts';
 };
@@ -108008,11 +108008,11 @@ export type DeletePostData = {
          */
         postId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/posts/{postId}';
 };
@@ -108058,11 +108058,11 @@ export type GetPostData = {
          */
         postId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/posts/{postId}';
 };
@@ -108107,11 +108107,11 @@ export type UpdatePostData = {
          */
         postId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/posts/{postId}';
 };
@@ -108151,11 +108151,11 @@ export type GeneratePostTextData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/posts/generatePostText';
 };
@@ -108208,11 +108208,11 @@ export type DeleteEntityPostData = {
          */
         entityPostId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/entityPosts/{entityPostId}';
 };
@@ -108259,11 +108259,11 @@ export type GetEntityPostCommentsData = {
          */
         entityPostId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * If a response to a previous request contained the nextPageToken field,
          * pass that field's value as the pageToken parameter to retrieve the next page of data.
@@ -108328,11 +108328,11 @@ export type CreateEntityPostCommentData = {
          */
         entityPostId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/entityPosts/{entityPostId}/comments';
 };
@@ -108393,11 +108393,11 @@ export type DeleteEntityPostCommentData = {
         entityPostId: string;
         commentId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/entityPosts/{entityPostId}/comments/{commentId}';
 };
@@ -108439,11 +108439,11 @@ export type UploadVideoData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/social/video';
 };
@@ -108500,7 +108500,7 @@ export type SocialEligibilityData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The publisher(s) for which to check for eligibility
          */
@@ -108573,7 +108573,7 @@ export type GetSocialConversationData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * If a response to a previous request contained the **`nextPageToken`** field, pass that field's value as the **`pageToken`** parameter to retrieve the next page of data.
          *
@@ -108648,11 +108648,11 @@ export type ListSocialMessagesData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * If a response to a previous request contained the **`nextPageToken`** field, pass that field's value as the **`pageToken`** parameter to retrieve the next page of data.
          *
@@ -108754,11 +108754,11 @@ export type CreateSocialMessagesData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * If a response to a previous request contained the **`nextPageToken`** field, pass that field's value as the **`pageToken`** parameter to retrieve the next page of data.
          *
@@ -108805,11 +108805,11 @@ export type GetRolesData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/roles';
 };
@@ -108855,11 +108855,11 @@ export type GetUsersData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          *
          * Number of results to skip. Used to page through results.
@@ -108912,11 +108912,11 @@ export type CreateUserData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/users';
 };
@@ -108959,11 +108959,11 @@ export type DeleteUserData = {
         accountId: string;
         userId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/users/{userId}';
 };
@@ -109006,11 +109006,11 @@ export type GetUserData = {
         accountId: string;
         userId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/users/{userId}';
 };
@@ -109051,11 +109051,11 @@ export type UpdateUserData = {
         accountId: string;
         userId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/users/{userId}';
 };
@@ -109098,11 +109098,11 @@ export type UpdateUserPasswordData = {
         accountId: string;
         userId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/users/{userId}/password';
 };
@@ -109142,11 +109142,11 @@ export type UpdateUserPasswordResponse = UpdateUserPasswordResponses[keyof Updat
 export type ListAccountsData = {
     body?: never;
     path?: never;
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Returns only accounts whose name contains the provided string
          */
@@ -109201,11 +109201,11 @@ export type GetAccountData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}';
 };
@@ -109245,11 +109245,11 @@ export type GetApprovalGroupsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/approvalgroups';
 };
@@ -109296,11 +109296,11 @@ export type CreateApprovalGroupData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/approvalgroups';
 };
@@ -109343,11 +109343,11 @@ export type DeleteApprovalGroupData = {
         accountId: string;
         approvalGroupId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/approvalgroups/{approvalGroupId}';
 };
@@ -109390,11 +109390,11 @@ export type GetApprovalGroupData = {
         accountId: string;
         approvalGroupId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/approvalgroups/{approvalGroupId}';
 };
@@ -109435,11 +109435,11 @@ export type UpdateApprovalGroupData = {
         accountId: string;
         approvalGroupId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/approvalgroups/{approvalGroupId}';
 };
@@ -109481,7 +109481,7 @@ export type ListLinkedAccountsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * When provided, only linked accounts assigned to the specified entities will be returned.
          */
@@ -109513,7 +109513,7 @@ export type ListLinkedAccountsData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/linkedaccounts';
 };
@@ -109564,11 +109564,11 @@ export type GetLinkedAccountData = {
         accountId: string;
         linkedAccountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/linkedaccounts/{linkedAccountId}';
 };
@@ -109608,11 +109608,11 @@ export type GetOptimizationTasksData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Comma-separated list of Optimization Task IDs corresponding to Optimization Tasks that should be included in the response.
          *
@@ -109668,11 +109668,11 @@ export type GetLinkOptimizationTaskData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Comma-separated list of Optimization Task IDs corresponding to Optimization Tasks that should be included in the response.
          *
@@ -109747,7 +109747,7 @@ export type ListAssetsData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          *
          * Number of results to skip. Used to page through results.
@@ -109829,7 +109829,7 @@ export type CreateAssetData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The formatting langauge used to parse rich text field values.
          * Present if and only if type of field is "**Rich Text**."
@@ -109882,11 +109882,11 @@ export type DeleteAssetData = {
         accountId: string;
         assetId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/assets/{assetId}';
 };
@@ -109933,7 +109933,7 @@ export type GetAssetData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Present if and only if type of subfield is "**Rich Text**."
          *
@@ -109988,7 +109988,7 @@ export type UpdateAssetData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The formatting langauge used to parse rich text field values.
          * Present if and only if type of field is "**Rich Text**."
@@ -110047,11 +110047,11 @@ export type PushDataData = {
          */
         connectorId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The run mode of the Connector.
          */
@@ -110112,11 +110112,11 @@ export type TriggerConnectorData = {
          */
         connectorId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The run mode of the Connector.
          */
@@ -110191,11 +110191,11 @@ export type GetConnectorRunData = {
          */
         runUid: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/connectors/{connectorId}/runs/{runUid}';
 };
@@ -110305,11 +110305,11 @@ export type ApproveRunData = {
          */
         runUid?: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/connectors/{connectorId}/runs/{runUid}/approve';
 };
@@ -110366,11 +110366,11 @@ export type CancelRunData = {
          */
         runUid?: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/connectors/{connectorId}/runs/{runUid}/cancel';
 };
@@ -110419,11 +110419,11 @@ export type ListSuggestionsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The formatting language used to parse rich text field values. Present if and only if the field is of type “**Rich Text**."
          *
@@ -110523,11 +110523,11 @@ export type UpsertSuggestionData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The formatting language used to parse rich text field values. Present if and only if the field is of type “**Rich Text**."
          *
@@ -110583,11 +110583,11 @@ export type CancelSuggestionData = {
          */
         suggestionUid: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/suggestions/cancel/{suggestionUid}';
 };
@@ -110633,11 +110633,11 @@ export type GetSuggestionData = {
          */
         suggestionUid: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The formatting language used to parse rich text field values. Present if and only if the field is of type “**Rich Text**."
          *
@@ -110698,11 +110698,11 @@ export type CommentSuggestionData = {
          */
         suggestionUid: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/suggestions/comment/{suggestionUid}';
 };
@@ -110749,11 +110749,11 @@ export type UpdateSuggestionData = {
          */
         suggestionUid: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The formatting language used to parse rich text field values. Present if and only if the field is of type “**Rich Text**."
          *
@@ -110819,11 +110819,11 @@ export type ListResourceConfigNamesData = {
          */
         resourceSubType: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/config/resourcenames/{resourceGroup}/{resourceSubType}';
 };
@@ -110881,11 +110881,11 @@ export type GetResourceConfigurationData = {
          */
         resourceSubType: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/config/resources/{resourceGroup}/{resourceSubType}/{resourceId}';
 };
@@ -110943,11 +110943,11 @@ export type PatchResourceConfigData = {
          */
         resourceSubType: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/config/resources/{resourceGroup}/{resourceSubType}/{resourceId}';
 };
@@ -111007,11 +111007,11 @@ export type UpdateResourceConfigData = {
          */
         resourceSubType: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/config/resources/{resourceGroup}/{resourceSubType}/{resourceId}';
 };
@@ -111067,11 +111067,11 @@ export type CreateResourceConfigData = {
          */
         resourceSubType: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/config/resources/{resourceGroup}/{resourceSubType}';
 };
@@ -111127,7 +111127,7 @@ export type DeleteLicenseAssignmentData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * All requests must be authenticated using an app's API key via the api_key query parameter. You can find this value in Developer Console / [App Name] / API Credentials.
          *
@@ -111188,7 +111188,7 @@ export type CreateLicenseAssignmentData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * All requests must be authenticated using an app's API key via the api_key query parameter. You can find this value in Developer Console / [App Name] / API Credentials.
          *
@@ -111247,7 +111247,7 @@ export type UpdateLicenseAssignmentData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * All requests must be authenticated using an app's API key via the api_key query parameter. You can find this value in Developer Console / [App Name] / API Credentials.
          *
@@ -111296,7 +111296,7 @@ export type ListLicensePacksData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * All requests must be authenticated using an app's API key via the api_key query parameter. You can find this value in Developer Console / [App Name] / API Credentials.
          *
@@ -111358,7 +111358,7 @@ export type ListLicenseAssignmentsData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * All requests must be authenticated using an app's API key via the api_key query parameter. You can find this value in Developer Console / [App Name] / API Credentials.
          *
@@ -111421,7 +111421,7 @@ export type ListOperationsData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * All requests will be authenticated using an app's API key
          * via the api_key query parameter. You can find this value
@@ -111503,7 +111503,7 @@ export type CreateOperationData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * All requests will be authenticated using an app's API key
          * via the api_key query parameter. You can find this value
@@ -111558,7 +111558,7 @@ export type GetOperationData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * All requests will be authenticated using an app's API key
          * via the api_key query parameter. You can find this value in
@@ -111613,7 +111613,7 @@ export type CancelOperationData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * All requests will be authenticated using an app's API key
          * via the api_key query parameter. You can find this value in
@@ -111653,11 +111653,11 @@ export type ListDomainsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Exact hostname(s) to filter results by. If not provided, results for all hostnames will be returned.
          */
@@ -112036,11 +112036,11 @@ export type CreateDomainData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/domains';
 };
@@ -112237,11 +112237,11 @@ export type DeleteDomainData = {
         accountId: string;
         domainId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * If true, Domain Associations using this domain will also be deleted.
          * If not set or false, and if Domain Associations exist using this domain, an error will be returned.
@@ -112285,11 +112285,11 @@ export type GetDomainData = {
         accountId: string;
         domainId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * `FULL` returns all details, while `BASIC` omits certain SSL information.
          * Using `BASIC` will also usually result in a lower response latency relative to using `FULL`.
@@ -112503,11 +112503,11 @@ export type UpdateDomainData = {
         accountId: string;
         domainId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * If true, and the domain is in a MOVE_REQUIRED state, will move ownership of the domain to this account.
          */
@@ -112715,11 +112715,11 @@ export type MigratePagesDomainData = {
          */
         hostname: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/domains/migratepagesdomain/{hostname}';
 };
@@ -112959,11 +112959,11 @@ export type ListDomainAssociationsData = {
          */
         domainId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Comma-separated list of associated resources to filter by.
          */
@@ -113083,11 +113083,11 @@ export type CreateDomainAssociationData = {
         accountId: string;
         domainId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * If true, and the domain is in a MOVE_REQUIRED state, will move ownership of the domain to this account.
          */
@@ -113166,11 +113166,11 @@ export type DeleteDomainAssociationData = {
         domainId: string;
         domainAssociationId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/domains/{domainId}/associations/{domainAssociationId}';
 };
@@ -113209,11 +113209,11 @@ export type GetDomainAssociationData = {
         domainId: string;
         domainAssociationId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/domains/{domainId}/associations/{domainAssociationId}';
 };
@@ -113290,11 +113290,11 @@ export type UpdateDomainAssociationData = {
         domainId: string;
         domainAssociationId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/domains/{domainId}/associations/{domainAssociationId}';
 };
@@ -113367,11 +113367,11 @@ export type ListManagedCsrsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return per page. Sizes above the maximum will be clamped at the maximum value.
          */
@@ -113480,11 +113480,11 @@ export type CreateManagedCsrData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/csrs';
 };
@@ -113552,11 +113552,11 @@ export type DeleteManagedCsrData = {
         accountId: string;
         managedCsrId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/csrs/{managedCsrId}';
 };
@@ -113594,11 +113594,11 @@ export type GetManagedCsrData = {
         accountId: string;
         managedCsrId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * `FULL` returns all details, while `BASIC` omits certain SSL information.
          * Using `BASIC` will also usually result in a lower response latency relative to using `FULL`.

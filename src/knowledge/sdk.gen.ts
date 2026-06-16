@@ -743,7 +743,7 @@ export const updateEvent = <ThrowOnError extends boolean = false>(options: Optio
  * All Locations are required to have an associated Category to assist with organization and search. Yext provides a hierarchy of business categories for this purpose, exposed by this API.
  *
  */
-export const getBusinessCategories = <ThrowOnError extends boolean = false>(options: Options<GetBusinessCategoriesData, ThrowOnError>): RequestResult<GetBusinessCategoriesResponses, GetBusinessCategoriesErrors, ThrowOnError> => (options.client ?? client).get<GetBusinessCategoriesResponses, GetBusinessCategoriesErrors, ThrowOnError>({
+export const getBusinessCategories = <ThrowOnError extends boolean = false>(options?: Options<GetBusinessCategoriesData, ThrowOnError>): RequestResult<GetBusinessCategoriesResponses, GetBusinessCategoriesErrors, ThrowOnError> => (options?.client ?? client).get<GetBusinessCategoriesResponses, GetBusinessCategoriesErrors, ThrowOnError>({
     responseValidator: async (data) => await zGetBusinessCategoriesResponse.parseAsync(data),
     security: [{
             in: 'query',
@@ -765,7 +765,7 @@ export const getBusinessCategories = <ThrowOnError extends boolean = false>(opti
  * * Only one of **`entityId`** or **`clientCategoryId`** can be specified at a time.
  *
  */
-export const getGoogleKeywords = <ThrowOnError extends boolean = false>(options: Options<GetGoogleKeywordsData, ThrowOnError>): RequestResult<GetGoogleKeywordsResponses, GetGoogleKeywordsErrors, ThrowOnError> => (options.client ?? client).get<GetGoogleKeywordsResponses, GetGoogleKeywordsErrors, ThrowOnError>({
+export const getGoogleKeywords = <ThrowOnError extends boolean = false>(options?: Options<GetGoogleKeywordsData, ThrowOnError>): RequestResult<GetGoogleKeywordsResponses, GetGoogleKeywordsErrors, ThrowOnError> => (options?.client ?? client).get<GetGoogleKeywordsResponses, GetGoogleKeywordsErrors, ThrowOnError>({
     responseValidator: async (data) => await zGetGoogleKeywordsResponse.parseAsync(data),
     security: [{
             in: 'query',
@@ -2446,7 +2446,7 @@ export const updateUserPassword = <ThrowOnError extends boolean = false>(options
  *
  * List all accounts that you have access to. Unless you are in Partner Portal mode, this will only be your own account.
  */
-export const listAccounts = <ThrowOnError extends boolean = false>(options: Options<ListAccountsData, ThrowOnError>): RequestResult<ListAccountsResponses, ListAccountsErrors, ThrowOnError> => (options.client ?? client).get<ListAccountsResponses, ListAccountsErrors, ThrowOnError>({
+export const listAccounts = <ThrowOnError extends boolean = false>(options?: Options<ListAccountsData, ThrowOnError>): RequestResult<ListAccountsResponses, ListAccountsErrors, ThrowOnError> => (options?.client ?? client).get<ListAccountsResponses, ListAccountsErrors, ThrowOnError>({
     responseValidator: async (data) => await zListAccountsResponse.parseAsync(data),
     security: [{
             in: 'query',

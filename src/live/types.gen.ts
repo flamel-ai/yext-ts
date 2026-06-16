@@ -3389,11 +3389,11 @@ export type ListEntitiesData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Optional parameter to return fields of type **Markdown** as HTML.
          * - `false`: **Markdown** fields will be returned as JSON
@@ -12608,11 +12608,11 @@ export type GetEntityData = {
          */
         entityId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Optional parameter to return fields of type **Markdown** as HTML.
          * - `false`: **Markdown** fields will be returned as JSON
@@ -20799,7 +20799,7 @@ export type GeoSearchEntitiesData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * The two-character ISO 3166-1 code of the country where the geocoder should be biased.
          *
@@ -30108,11 +30108,11 @@ export type GetEntitySchemaData = {
          */
         entityType: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/entityschema/{entityType}/{entityId}/{languageCode}';
 };
@@ -30160,11 +30160,11 @@ export type GetLanguageProfileData = {
          */
         languageCode: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Optional parameter to return fields of type **Markdown** as HTML.
          * - `false`: **Markdown** fields will be returned as JSON
@@ -38340,11 +38340,11 @@ export type ListLanguageProfilesData = {
          */
         entityId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Optional parameter to return fields of type **Markdown** as HTML.
          * - `false`: **Markdown** fields will be returned as JSON
@@ -46544,11 +46544,11 @@ export type ListAllLanguageProfilesData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Optional parameter to return fields of type **Markdown** as HTML.
          * - `false`: **Markdown** fields will be returned as JSON
@@ -55755,11 +55755,11 @@ export type GetMenusData = {
         listId: string;
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/menus/{listId}';
 };
@@ -55803,11 +55803,11 @@ export type GetBiosData = {
         listId: string;
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/bios/{listId}';
 };
@@ -55851,11 +55851,11 @@ export type GetProductsData = {
         listId: string;
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/products/{listId}';
 };
@@ -55899,11 +55899,11 @@ export type GetEventsData = {
         listId: string;
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/events/{listId}';
 };
@@ -55949,7 +55949,7 @@ export type GetLanguageProfilesData = {
          */
         languageCode: string;
     };
-    query: {
+    query?: {
         /**
          * Comma-separated list of field names from the Location object. When present, only the fields listed will be returned. You can use dot notation to specify substructures (e.g., `"logo.url"`). To include a custom field, specify it as `custom###`, where "###" is the custom field's **`id`**.
          *
@@ -55958,7 +55958,7 @@ export type GetLanguageProfilesData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/locations/{locationId}/profiles/{languageCode}';
 };
@@ -55999,7 +55999,7 @@ export type ListLocationLanguageProfilesData = {
         accountId: string;
         locationId: string;
     };
-    query: {
+    query?: {
         /**
          * Comma-separated list of field names from the Location object. When present, only the fields listed will be returned. You can use dot notation to specify substructures (e.g., `"logo.url"`). To include a custom field, specify it as `custom###`, where "###" is the custom field's **`id`**.
          *
@@ -56008,7 +56008,7 @@ export type ListLocationLanguageProfilesData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/locations/{locationId}/profiles';
 };
@@ -56056,11 +56056,11 @@ export type GetLanguageProfilesSchemaData = {
          */
         languageCode: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/locations/{locationId}/profiles/{languageCode}/schema';
 };
@@ -56101,7 +56101,7 @@ export type GetLocationData = {
         accountId: string;
         locationId: string;
     };
-    query: {
+    query?: {
         /**
          * Comma-separated list of field names from the Location object. When present, only the fields listed will be returned. You can use dot notation to specify substructures (e.g., `"logo.url"`). To include a custom field, specify it as `custom###`, where "###" is the custom field's **`id`**.
          *
@@ -56110,7 +56110,7 @@ export type GetLocationData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/locations/{locationId}';
 };
@@ -56150,7 +56150,7 @@ export type LocationsListData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * Number of results to return.
          */
@@ -56607,7 +56607,7 @@ export type LocationsListData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Specifies the fields and direction by which the output should be sorted. Should be provided as a URL-encoded string containing a JSON array of `sortDefinition` objects. A `sortDefinition` object consists of a `sortField` and a `sortDirection` field. The `sortField` is the name of the field you are sorting by (e.g., `firstName` or `custom###` for a custom field, where "###" is the custom field’s **`id`**). The `sortDirection` indicates whether the sort is ascending (`ASCENDING`) or descending (`DESCENDING`).
          *
@@ -56663,11 +56663,11 @@ export type GetLocationSchemaData = {
         accountId: string;
         locationId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/locations/{locationId}/schema';
 };
@@ -57197,7 +57197,7 @@ export type GeoSearchData = {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Specifies the fields and direction by which the output should be sorted. Should be provided as a URL-encoded string containing a JSON array of `sortDefinition` objects. A `sortDefinition` object consists of a `sortField` and a `sortDirection` field. The `sortField` is the name of the field you are sorting by (e.g., `firstName` or `custom###` for a custom field, where "###" is the custom field’s **`id`**). The `sortDirection` indicates whether the sort is ascending (`ASCENDING`) or descending (`DESCENDING`).
          *
@@ -57256,11 +57256,11 @@ export type CreateQuestionData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/createQuestion';
 };
@@ -57302,11 +57302,11 @@ export type CreateReviewData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviewSubmission';
 };
@@ -57372,11 +57372,11 @@ export type DeleteReviewData = {
          */
         apiIdentifier: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviewSubmission/{apiIdentifier}';
 };
@@ -57442,11 +57442,11 @@ export type UpdateReviewData = {
          */
         apiIdentifier: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/reviewSubmission/{apiIdentifier}';
 };
@@ -57506,11 +57506,11 @@ export type ContentGetData = {
          */
         ids: Array<string>;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/content/{endpoint}/{ids}';
 };
@@ -57568,11 +57568,11 @@ export type ContentListData = {
          */
         endpoint: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Number of results to return.
          */

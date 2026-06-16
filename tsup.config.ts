@@ -8,6 +8,7 @@ import { SPECS } from "./scripts/specs.js";
 const entry: Record<string, string> = {
   index: "src/index.ts",
   auth: "src/auth.ts",
+  errors: "src/errors.ts",
 };
 for (const { module } of SPECS) {
   entry[`${module}/index`] = `src/${module}/index.ts`;

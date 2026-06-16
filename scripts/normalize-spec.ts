@@ -55,6 +55,13 @@ function walk(value: Json): void {
     value.style = "form";
   }
 
+  // The `v` (API version date) query param is required by Yext, but yext-ts
+  // injects it on every request via the auth layer. Mark it optional so callers
+  // aren't forced to pass `query.v` themselves (the runtime still sends it).
+  if (value.in === "query" && value.name === "v") {
+    value.required = false;
+  }
+
   for (const child of Object.values(value)) walk(child);
 }
 

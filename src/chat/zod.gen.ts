@@ -69,7 +69,7 @@ export const zMessagePath = z.object({
 });
 
 export const zMessageQuery = z.object({
-    v: z.string()
+    v: z.string().optional()
 });
 
 /**

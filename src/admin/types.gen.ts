@@ -25438,11 +25438,11 @@ export type ListAvailableServicesData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/availableservices';
 };
@@ -25485,11 +25485,11 @@ export type CreateNewLocationAddRequestData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/newlocationaddrequests';
 };
@@ -25529,11 +25529,11 @@ export type CreateExistingLocationAddRequestData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/existinglocationaddrequests';
 };
@@ -25573,11 +25573,11 @@ export type CreateExistingSubAccountAddRequestData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/existingsubaccountaddrequests';
 };
@@ -25623,11 +25623,11 @@ export type CancelServicesData = {
          */
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/cancelservices';
 };
@@ -25673,11 +25673,11 @@ export type CancelSubAccountServicesData = {
          */
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/cancelsubaccountservices';
 };
@@ -25723,11 +25723,11 @@ export type CancelAllSubAccountServicesData = {
          */
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/cancelallsubaccountservices';
 };
@@ -25767,11 +25767,11 @@ export type CreateProcessReviewAddRequestData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/processaddrequest';
 };
@@ -25813,11 +25813,11 @@ export type ListAddRequestsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Filters the list to add requests in a specific status.
          */
@@ -25896,11 +25896,11 @@ export type GetAddRequestData = {
          */
         addRequestId: number;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/addrequests/{addRequestId}';
 };
@@ -25940,11 +25940,11 @@ export type ListSubAccountAddRequestsData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Filters the list to add requests in a specific status.
          */
@@ -26023,11 +26023,11 @@ export type GetSubAccountAddRequestData = {
          */
         addRequestId: number;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/subaccountaddrequests/{addRequestId}';
 };
@@ -26073,11 +26073,11 @@ export type ListServicesData = {
          */
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         sku?: string;
         locationId?: string;
         /**
@@ -26146,11 +26146,11 @@ export type ListSubAccountServicesData = {
          */
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         sku?: string;
         subAccountId?: string;
         /**
@@ -26208,11 +26208,11 @@ export type CreateSubAccountData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/createsubaccount';
 };
@@ -26252,11 +26252,11 @@ export type ResourcesApplyRequestData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/resourcesapplyrequests';
 };
@@ -26301,11 +26301,11 @@ export type GetResourcesApplyRequestStatusData = {
         requestId: number;
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}/resourcesapplyrequests/{requestId}';
 };
@@ -26343,11 +26343,11 @@ export type GetResourcesApplyRequestStatusResponse = GetResourcesApplyRequestSta
 export type ListAccountsData = {
     body?: never;
     path?: never;
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
         /**
          * Returns only accounts whose name contains the provided string
          */
@@ -26402,11 +26402,11 @@ export type GetAccountData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}';
 };
@@ -26446,11 +26446,11 @@ export type UpdateAccountData = {
     path: {
         accountId: string;
     };
-    query: {
+    query?: {
         /**
          * A date in `YYYYMMDD` format.
          */
-        v: string;
+        v?: string;
     };
     url: '/accounts/{accountId}';
 };
