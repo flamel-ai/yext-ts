@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import {
   assertYextOk,
   buildYextAuthorizeUrl,
+  withYextAuth,
   configureYext,
   configureYextClient,
   createYextFetch,
@@ -184,6 +185,29 @@ describe("error handling", () => {
       expect(e.issues[0]?.code).toBe(3);
       expect(e.message).toContain("bad request");
     }
+  });
+});
+
+describe("multi-tenant per-request auth (withYextAuth)", () => {
+  it("isolates concurrent calls that use different tokens (no shared singleton)", async () => {
+    const seen: string[] = [];
+    const fakeFetch = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      const url = new URL(input instanceof Request ? input.url : String(input));
+      await new Promise((r) => setTimeout(r, 10)); // overlap the two in flight
+      seen.push(url.searchParams.get("access_token") ?? "");
+      return new Response(
+        JSON.stringify({ meta: { uuid: "x", errors: [] }, response: { count: 0, entities: [], pageToken: "" } }),
+        { status: 200, headers: { "content-type": "application/json" } },
+      );
+    });
+
+    await Promise.all([
+      listEntities({ path: { accountId: "me" }, query: {}, ...withYextAuth({ credential: { type: "accessToken", value: "TENANT_A" } }) }),
+      listEntities({ path: { accountId: "me" }, query: {}, ...withYextAuth({ credential: { type: "accessToken", value: "TENANT_B" } }) }),
+    ]);
+
+    expect(seen.sort()).toEqual(["TENANT_A", "TENANT_B"]);
+    fakeFetch.mockRestore();
   });
 });
 

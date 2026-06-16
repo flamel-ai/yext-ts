@@ -72,6 +72,26 @@ configureYext({
 });
 ```
 
+### Multi-tenant servers (per-request credentials)
+
+`configureYext` / `configureYextClient` mutate a **shared singleton** client — great for a single-tenant app or script, but **unsafe on a server** where concurrent requests each carry a different Yext token (one request would clobber another's credential mid-flight).
+
+For that case, pass the credential **per call** with `withYextAuth` — no shared state, safe under concurrency:
+
+```ts
+import { withYextAuth } from "yext-ts";
+import { getEntity } from "yext-ts/knowledge";
+
+// inside a request handler — token resolved for THIS tenant/workspace
+const { data } = await getEntity({
+  path: { accountId: "me", entityId: id },
+  query: {},
+  ...withYextAuth({ credential: { type: "accessToken", value: req.workspaceYextToken } }),
+});
+```
+
+Each call gets its own fetch closure carrying that request's token (and version), so two concurrent requests with different tokens never cross over.
+
 ### OAuth (authorization-code flow)
 
 ```ts

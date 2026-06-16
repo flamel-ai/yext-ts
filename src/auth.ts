@@ -101,13 +101,16 @@ export interface YextAuthOptions {
  * parameter onto every outgoing request. Existing values are never overwritten,
  * so per-call overrides still win.
  */
-export function createYextFetch(
-  options: YextAuthOptions,
-): (request: Request) => Promise<Response> {
+export function createYextFetch(options: YextAuthOptions): typeof fetch {
   const version = options.version ?? DEFAULT_API_VERSION;
   const { credential } = options;
 
-  return (request: Request): Promise<Response> => {
+  // Typed as the full `fetch` signature so it's assignable both at the client
+  // config level (`setConfig({ fetch })`) and the per-call level
+  // (`Options.fetch`). The generated client always invokes it with a `Request`;
+  // the string/URL branch keeps it a valid drop-in `fetch`.
+  return (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
+    const request = input instanceof Request ? input : new Request(input, init);
     const url = new URL(request.url);
     if (!url.searchParams.has("v")) {
       url.searchParams.set("v", version);
@@ -139,6 +142,31 @@ export function configureYextClient(
     ...(options.baseUrl ? { baseUrl: options.baseUrl } : {}),
     fetch: createYextFetch(options),
   });
+}
+
+/**
+ * Per-request auth for multi-tenant servers (the Flamel case).
+ *
+ * Returns call-option overrides to spread into a single SDK call, so each
+ * request uses its own credential with NO shared mutable state — safe under
+ * concurrency where every request may carry a different token. Prefer this over
+ * `configureYext`/`configureYextClient` (which mutate a shared singleton client
+ * and are only appropriate for single-tenant apps).
+ *
+ *   await getEntity({
+ *     path: { accountId: "me", entityId: id },
+ *     query: {},
+ *     ...withYextAuth({ credential: { type: "accessToken", value: req.workspaceToken } }),
+ *   });
+ */
+export function withYextAuth(options: YextAuthOptions): {
+  fetch: typeof fetch;
+  baseUrl?: string;
+} {
+  return {
+    fetch: createYextFetch(options),
+    ...(options.baseUrl ? { baseUrl: options.baseUrl } : {}),
+  };
 }
 
 /** Schema for the OAuth token endpoint response. */
