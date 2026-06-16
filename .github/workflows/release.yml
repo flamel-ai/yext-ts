@@ -1,16 +1,22 @@
 name: Release
 
-# Publishes to npm when you publish a GitHub Release (tag like v0.1.0).
+# Every push to main: verify, auto-bump the patch version, publish to the
+# public npm registry (with provenance), then tag + create a GitHub release.
 on:
-  release:
-    types: [published]
+  push:
+    branches: [main]
 
 permissions:
-  contents: read
-  id-token: write # required for npm provenance
+  contents: write # push the version-bump commit + create the release
+  id-token: write # npm provenance
+
+# Never run two releases at once (avoids version-bump races).
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,11 +26,53 @@ jobs:
           node-version: 22
           registry-url: https://registry.npmjs.org
           cache: pnpm
+
       - run: pnpm install --frozen-lockfile
-      # Full verification gate before anything is published.
+
+      # Full verification gate — nothing publishes unless this is green.
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
-      - run: pnpm publish --provenance --access public --no-git-checks
+
+      # Optional live round-trip; self-skips unless a Yext credential secret exists.
+      - run: pnpm test:integration
+        env:
+          YEXT_API_KEY: ${{ secrets.YEXT_API_KEY }}
+          YEXT_ACCESS_TOKEN: ${{ secrets.YEXT_ACCESS_TOKEN }}
+          YEXT_API_VERSION: ${{ vars.YEXT_API_VERSION }}
+          YEXT_ACCOUNT_ID: ${{ vars.YEXT_ACCOUNT_ID }}
+
+      # Skip the publish steps (but keep CI green) until NPM_TOKEN is configured.
+      - id: token
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -n "$NPM_TOKEN" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::NPM_TOKEN secret not set — skipping publish. Add it in Settings → Secrets to enable auto-publish."
+          fi
+
+      - name: Bump version
+        if: steps.token.outputs.present == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          pnpm version patch -m "chore(release): v%s [skip ci]"
+          echo "VERSION=$(node -p "require('./package.json').version")" >> "$GITHUB_ENV"
+
+      # Pushed with GITHUB_TOKEN, which does NOT retrigger workflows (no loop).
+      - name: Publish to npm
+        if: steps.token.outputs.present == 'true'
+        run: pnpm publish --provenance --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push bump + create GitHub release
+        if: steps.token.outputs.present == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push --follow-tags origin HEAD:main
+          gh release create "v${VERSION}" --generate-notes --title "v${VERSION}"
