@@ -221,4 +221,4 @@ The workflow re-runs typecheck + test + build as a gate before `pnpm publish`.
 
 ## License
 
-MIT
+BSD-3-Clause. The vendored OpenAPI specs under `specs/` are from [yext/openapi](https://github.com/yext/openapi) (BSD-3-Clause, © 2021 Yext, Inc.); the SDK code is © 2026 Flamel AI, Inc. Per Yext, only the spec files are covered by this license — use of the Yext API is governed by separate Yext agreements. See [LICENSE](LICENSE).

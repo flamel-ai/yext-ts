@@ -8,8 +8,8 @@
   },
   "description": "Clean, fully-typed TypeScript SDK for the Yext API, generated from the official OpenAPI specs with zod validation. Covers all 11 Yext APIs.",
   "type": "module",
-  "license": "MIT",
-  "author": "Matt Sichterman",
+  "license": "BSD-3-Clause",
+  "author": "Flamel AI",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/msichterman/yext-ts.git"
