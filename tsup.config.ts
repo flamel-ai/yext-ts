@@ -16,7 +16,10 @@ for (const { module } of SPECS) {
 
 export default defineConfig({
   entry,
-  format: ["esm"],
+  // Dual-format: ESM (.js) for native ESM + bundlers, CJS (.cjs) so the SDK is
+  // consumable by CommonJS / tsx runtimes (Flamel's server + scripts run on tsx,
+  // which resolves with require/default conditions, not `import`).
+  format: ["esm", "cjs"],
   dts: true,
   clean: true,
   sourcemap: true,
