@@ -1,6 +1,11 @@
 {
   "name": "yext-ts",
   "version": "0.1.0",
+  "packageManager": "pnpm@10.33.0",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "description": "Clean, fully-typed TypeScript SDK for the Yext API, generated from the official OpenAPI specs with zod validation. Covers all 11 Yext APIs.",
   "type": "module",
   "license": "MIT",
@@ -93,7 +98,8 @@
     "build": "tsup",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "prepublishOnly": "npm run generate && npm run build"
+    "test:integration": "vitest run test/integration.test.ts",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "zod": "^4.4.3"

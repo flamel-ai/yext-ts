@@ -1,5 +1,7 @@
 # yext-ts
 
+[![CI](https://github.com/flamel-ai/yext-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/flamel-ai/yext-ts/actions/workflows/ci.yml)
+
 A clean, fully-typed TypeScript SDK for the [Yext API](https://hitchhikers.yext.com/docs/), generated from Yext's official [OpenAPI specs](https://github.com/yext/openapi) with [`@hey-api/openapi-ts`](https://heyapi.dev) and [zod](https://zod.dev) validation.
 
 - **All 11 Yext APIs**, one tree-shakeable sub-module each.
@@ -187,7 +189,35 @@ pnpm test
 pnpm build         # emit dist/ (ESM + .d.ts)
 ```
 
-The generated `src/**/*.gen.ts` is committed so the SDK is reviewable and usable straight from source. `scripts/normalize-spec.ts` fixes a few upstream spec quirks (wrong-typed `default`s, an invalid query `style: "simple"`) before generation; the vendored `specs/` stay as the untouched upstream copies.
+The generated `src/**/*.gen.ts` is committed so the SDK is reviewable and usable straight from source. `scripts/normalize-spec.ts` fixes a few upstream spec quirks (wrong-typed `default`s, an invalid query `style: "simple"`, and makes the auto-injected `v` param optional for callers) before generation; the vendored `specs/` stay as the untouched upstream copies.
+
+## Continuous integration & live verification
+
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs on every push and PR:
+
+- **`verify`** (always) — `pnpm install --frozen-lockfile` → `typecheck` → `test` → `build`. No secrets required.
+- **`integration`** (pushes to `main` only) — a **real round-trip** against the Yext API via `pnpm test:integration`.
+
+The live test ([`test/integration.test.ts`](test/integration.test.ts)) lists one entity and asserts the response validates against the generated zod schema. It **self-skips** unless a credential is present, so CI stays green until you opt in.
+
+**Enabling the live test without leaking anything (public repo):** add a credential as an encrypted **repository secret** — repo *Settings → Secrets and variables → Actions → New repository secret*:
+
+- `YEXT_API_KEY` (a static API key) **or** `YEXT_ACCESS_TOKEN` (an OAuth token)
+- optionally set `YEXT_API_VERSION` / `YEXT_ACCOUNT_ID` as *Variables*
+
+GitHub secrets are encrypted at rest, masked in logs (any echo shows `***`), and **never exposed to pull requests from forks** — so the credential stays private even though the code is public. Run it locally the same way: `YEXT_API_KEY=… pnpm test:integration`.
+
+## Publishing
+
+[`.github/workflows/release.yml`](.github/workflows/release.yml) publishes to npm (with provenance) when you publish a GitHub Release. One-time setup: add an `NPM_TOKEN` automation token as a repository secret. Then:
+
+```bash
+npm version patch        # or minor / major — bumps + tags
+git push --follow-tags
+gh release create v0.1.1 --generate-notes
+```
+
+The workflow re-runs typecheck + test + build as a gate before `npm publish`.
 
 ## License
 
