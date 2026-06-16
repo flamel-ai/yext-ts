@@ -1,0 +1,339 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0",
+    "title": "Webhook Documentation",
+    "description": "This is the Webhook section description"
+  },
+  "servers": [
+    {
+      "url": "https://pl.yext.com"
+    }
+  ],
+  "webhooks": {
+    "notifyReview": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/api_key"
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewNotification"
+              }
+            }
+          }
+        },
+        "operationId": "NotifyReview",
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Notify Review",
+        "description": "Publishers use this endpoint to notify Yext of review activity on listings. Specifically: \n* A new review has been posted\n* A new comment has been posted on an existing review\n* A review has been suppressed due to abuse reports\n",
+        "responses": {
+          "200": {
+            "description": "- Yext successfully recorded the review"
+          },
+          "400": {
+            "description": "- Publisher sent a bad request"
+          },
+          "404": {
+            "description": "- The specified listing does not exist or is not a Yext Listing"
+          },
+          "500": {
+            "description": "- Temporary Yext error. Please retry later."
+          }
+        }
+      }
+    },
+    "notifySuggestion": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/api_key"
+        }
+      ],
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuggestionNotification"
+              }
+            }
+          }
+        },
+        "operationId": "NotifySuggestion",
+        "tags": [
+          "Webhooks"
+        ],
+        "summary": "Notify Suggestion",
+        "description": "Publishers use this endpoint to notify Yext of data suggestion on listings. Specifically, notifications for:\n* a new suggestion has been received\n* an existing suggestion has been update\n",
+        "responses": {
+          "200": {
+            "description": "- Yext successfully recorded the suggestion"
+          },
+          "400": {
+            "description": "- Publisher sent a bad request"
+          },
+          "404": {
+            "description": "- The specified listing does not exist or is not a Yext Listing"
+          },
+          "500": {
+            "description": "- Temporary Yext error. Please retry later."
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Webhooks"
+    }
+  ],
+  "components": {
+    "parameters": {
+      "api_key": {
+        "name": "api_key",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Publisher api key\n"
+      }
+    },
+    "schemas": {
+      "PartnerReviewComments": {
+        "type": "array",
+        "description": "List of comments on the review",
+        "items": {
+          "required": [
+            "commentId",
+            "timestamp",
+            "authorName",
+            "content"
+          ],
+          "properties": {
+            "commentId": {
+              "type": "string",
+              "description": "Id of the review comment",
+              "example": "832813382"
+            },
+            "timestamp": {
+              "type": "string",
+              "description": "Date and time that the review comment was posted in ISO-9601 format",
+              "example": "2020-01-04T13:15:53Z"
+            },
+            "authorName": {
+              "type": "string",
+              "description": "The name of the user who posted the review comment",
+              "example": "Gomez Adams"
+            },
+            "content": {
+              "type": "string",
+              "description": "The full text of the review comment",
+              "example": "The hummus is good too!"
+            },
+            "ownerResponse": {
+              "type": "boolean",
+              "description": "Indicates whether the comment was made by the business owner"
+            }
+          }
+        }
+      },
+      "PartnerReview": {
+        "type": "array",
+        "items": {
+          "required": [
+            "reviewId",
+            "status",
+            "timestamp",
+            "authorName",
+            "url"
+          ],
+          "properties": {
+            "reviewId": {
+              "type": "string",
+              "description": "A unique ID for each review, as assinged by you",
+              "example": "5382"
+            },
+            "status": {
+              "type": "string",
+              "description": "The status of the review",
+              "enum": [
+                "ACTIVE",
+                "SUPPRESSED"
+              ]
+            },
+            "timestamp": {
+              "type": "string",
+              "description": "Date and time that the review was posted in ISO-9601 format",
+              "example": "2020-01-01T13:15:53Z"
+            },
+            "authorName": {
+              "type": "string",
+              "description": "The name of the user who posted the review",
+              "example": "Dana Smith"
+            },
+            "title": {
+              "type": "string",
+              "description": "The title of the review",
+              "example": "Great falafel"
+            },
+            "content": {
+              "type": "string",
+              "description": "The full text of the review",
+              "example": "Went there for lunch and had the best sandwich of my life."
+            },
+            "url": {
+              "type": "string",
+              "description": "The URL where consumers can read the review",
+              "example": "http://www.partner.com/listings/382384/reviews/5382"
+            },
+            "rating": {
+              "type": "string",
+              "description": "The rating given by the review",
+              "example": "4.5"
+            },
+            "maxRating": {
+              "type": "string",
+              "description": "The maximum possible rating of a review on your site"
+            },
+            "flagReason": {
+              "type": "string",
+              "description": "If present, the business owner has flagged the review a specific reason",
+              "enum": [
+                "INAPPROPRIATE_CONTENT",
+                "SPAM",
+                "NOT_LOCATION_RELATED"
+              ]
+            },
+            "comments": {
+              "$ref": "#/components/schemas/PartnerReviewComments"
+            },
+            "generated": {
+              "type": "boolean",
+              "description": "Indicates whether the review was written in response to a request from a review_generation program"
+            }
+          }
+        }
+      },
+      "ReviewNotification": {
+        "type": "object",
+        "required": [
+          "listingId",
+          "total",
+          "timestamp",
+          "rating",
+          "reviews"
+        ],
+        "properties": {
+          "listingId": {
+            "type": "string",
+            "description": "Publisher Listing ID",
+            "example": "5269143"
+          },
+          "total": {
+            "type": "string",
+            "description": "Total number of reviews on the listing, overall",
+            "example": "25"
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Official time the event occurred",
+            "example": "2020-01-02T13:15:53Z"
+          },
+          "averageRating": {
+            "type": "string",
+            "description": "The average rating across all reviews for this listing (of which there are total)",
+            "example": "3.4"
+          },
+          "reviews": {
+            "description": "A list containing one element - the updated review",
+            "$ref": "#/components/schemas/PartnerReview"
+          }
+        }
+      },
+      "PartnerSuggestion": {
+        "type": "object",
+        "required": [
+          "id",
+          "field",
+          "status",
+          "proposedValue",
+          "timestamp"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "A unique ID for each suggestion, as assigned by you",
+            "example": "5382"
+          },
+          "field": {
+            "type": "string",
+            "description": "The name of the listing field associated with the suggestion (e.g. main_phone, website_url)",
+            "example": "name"
+          },
+          "status": {
+            "type": "string",
+            "description": "* ACCEPTED (the suggestion has been applied to the listing)\n* PENDING (the suggestion is valid but has not been actioned on)\n* REJECTED (the suggestion has been rejected)\n* EXPIRED (the suggestion is no longer valid)'\n",
+            "enum": [
+              "ACCEPTED",
+              "PENDING",
+              "REJECTED",
+              "EXPIRED"
+            ]
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Date and time that the suggestion was created in ISO-9601 format",
+            "example": "2020-01-04T13:15:53Z"
+          },
+          "currentValue": {
+            "type": "string",
+            "description": "The existing field data",
+            "example": "DeeDee’s Doughnuts"
+          },
+          "proposedValue": {
+            "type": "string",
+            "description": "The content of the suggestion. The type of this value should match the type structure of the field",
+            "example": "Dee's Doughnuts"
+          }
+        }
+      },
+      "SuggestionNotification": {
+        "type": "object",
+        "required": [
+          "listingId",
+          "eventType",
+          "timestamp",
+          "suggestion"
+        ],
+        "properties": {
+          "listingId": {
+            "type": "string",
+            "description": "Publisher Listing ID",
+            "example": "5269143"
+          },
+          "eventType": {
+            "type": "string",
+            "enum": [
+              "SUGGESTION_CREATED",
+              "SUGGESTION_UPDATED"
+            ]
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Official time the event occurred",
+            "example": "2020-01-02T13:15:53Z"
+          },
+          "suggestion": {
+            "$ref": "#/components/schemas/PartnerSuggestion"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "name": "yext-ts",
+  "version": "0.1.0",
+  "description": "Clean, fully-typed TypeScript SDK for the Yext API, generated from the official OpenAPI specs with zod validation. Covers all 11 Yext APIs.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Matt Sichterman",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msichterman/yext-ts.git"
+  },
+  "homepage": "https://github.com/msichterman/yext-ts#readme",
+  "bugs": {
+    "url": "https://github.com/msichterman/yext-ts/issues"
+  },
+  "keywords": [
+    "yext",
+    "sdk",
+    "openapi",
+    "typescript",
+    "zod",
+    "knowledge-graph",
+    "listings"
+  ],
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "src",
+    "specs",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./auth": {
+      "types": "./dist/auth.d.ts",
+      "import": "./dist/auth.js"
+    },
+    "./admin": {
+      "types": "./dist/admin/index.d.ts",
+      "import": "./dist/admin/index.js"
+    },
+    "./answers": {
+      "types": "./dist/answers/index.d.ts",
+      "import": "./dist/answers/index.js"
+    },
+    "./chat": {
+      "types": "./dist/chat/index.d.ts",
+      "import": "./dist/chat/index.js"
+    },
+    "./events": {
+      "types": "./dist/events/index.d.ts",
+      "import": "./dist/events/index.js"
+    },
+    "./knowledge": {
+      "types": "./dist/knowledge/index.d.ts",
+      "import": "./dist/knowledge/index.js"
+    },
+    "./live": {
+      "types": "./dist/live/index.d.ts",
+      "import": "./dist/live/index.js"
+    },
+    "./publisher-ecl": {
+      "types": "./dist/publisher-ecl/index.d.ts",
+      "import": "./dist/publisher-ecl/index.js"
+    },
+    "./listings": {
+      "types": "./dist/listings/index.d.ts",
+      "import": "./dist/listings/index.js"
+    },
+    "./publisher-notify-review": {
+      "types": "./dist/publisher-notify-review/index.d.ts",
+      "import": "./dist/publisher-notify-review/index.js"
+    },
+    "./publisher-tracking-pixel": {
+      "types": "./dist/publisher-tracking-pixel/index.d.ts",
+      "import": "./dist/publisher-tracking-pixel/index.js"
+    },
+    "./webhooks": {
+      "types": "./dist/webhooks/index.d.ts",
+      "import": "./dist/webhooks/index.js"
+    }
+  },
+  "scripts": {
+    "fetch-specs": "tsx scripts/fetch-specs.ts",
+    "generate": "tsx scripts/generate.ts",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "npm run generate && npm run build"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.98.2",
+    "tsup": "^8.5.1",
+    "tsx": "^4.22.4",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.9"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

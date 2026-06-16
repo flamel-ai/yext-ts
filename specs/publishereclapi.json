@@ -1,0 +1,201 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0",
+    "title": "ECL Documentation",
+    "description": "# Item Formats\nDepending on the type of list returned, the 'items' will be of varying formats.\nExamples:\n## Menu\n<pre><code>{\n  \"name\": \"Chocolate Croissant\",\n  \"cost\": { ... },\n  \"description\": \"A tantalizing treat\",\n  \"photo\": {\n    \"url\": \"http://www.yext-static.com/cms/chocolate-croissant.jpg\",\n    \"height\": 250,\n    \"width\": 250\n  }\n  \"calories\": {\n    \"type\": \"RANGE\",\n    \"calorie\": 300,\n    \"rangeTo\": 350\n  }\n}</code></pre>\n\n## Bio\n<pre><code>\n{\n  \"name\": \"Dr. Allan Sicignano\",\n  \"description\": \"Dr. Allan Sicignano is at the forefront of modern chiropractor techniques...\",\n  \"photo\": {\"url\": \"http://www.yext-static.com/cms/dr-allan-sicignano.jpg\", \"height\": 250, \"width\": 250},\n  \"education\": [\n    \"Bachelor of Science, Cambridge University\",\n    \"USD Medical School\"\n  ],\n  \"certifications\": [\n    \"Chiropractory United\",\n    \"Verified Provider\"\n  ],\n  \"services\": [\n    \"Spinal Decompression\"\n  ],\n  \"url\": \"http://www.superchiro.com\"\n}\n</code></pre>\n\n## Product or Service\n<pre><code>\n{\n  \"name\": \"Black & Decker MOUSE Detail Sander with Dust Collection\",\n  \"cost\": { ... },\n  \"photos\": [\n    {\"url\": \"http://www.yext-static.com/cms/detail-sander.jpg\", \"height\": 250, \"width\": 250},\n    {\"url\": \"http://www.yext-static.com/cms/detail-sander2.jpg\", \"height\": 250, \"width\": 250}\n  ],\n  \"video\": \"http://www.youtube.com/watch?v=cGW0XKYeM6o\",\n  \"url\": \"http://www.kmart.com/deal-of-the-day/dap-120000000279845\"\n}\n</code></pre>\n\n## Event\n<pre><code>\n{\n  \"type\": \"Concert\",\n  \"name\": \"Gaelic Storm\",\n  \"starts\": \"2012-08-23T20:00-05\",\n  \"ends\": \"2012-08-24T00:00-05\",\n  \"description\": \"$20 tickets.  Doors at 8pm, show at 9pm.\",\n  \"photos\": [\n    {\"url\": \"http://www.yext-static.com/cms/detail-sander.jpg\", \"height\": 250, \"width\": 250},\n    {\"url\": \"http://www.yext-static.com/cms/detail-sander2.jpg\", \"height\": 250, \"width\": 250}\n  ],\n  \"video\": \"http://www.youtube.com/watch?v=jtCEvGxZVIM\",\n  \"url\": \"http://www.boweryballroom.com/event/125975\"\n}\n</code></pre>\n\n# Item Substructures\nCertain item fields have their own data models, which are described below.\n\n## Photo\n<pre><code>\n{\n  \"url\": \"http://www.yext-static.com/cms/detail-sander.jpg\", \"height\": 250, \"width\": 250\n}\n</code></pre>\n\n## Cost\nThe Cost structure is used in Menus and Products. The customer is able to specify four types of costs:\n1. PRICE: A simple price, optionally \"per\" something. (e.g., **price** = 9.00, **unit** = per pound)\n2. RANGE: A price range, optionally \"per\" something. (e.g., **price** = 9.00, **rangeTo** = 12.50, **unit** = each)\n3. NONE: No price specified.\n4. OTHER: Allows the user to enter text. (e.g., **other** = Call for price)\n\nSeperately, the customer is able to specify **options** on the Cost.  For example:\n1. A Pizza sold in 3 sizes: \n<pre><code>\n[{\"Small\", \"9.00\"}, {\"Medium\", \"11.00\"}, {\"Large\", \"13.00\"}]\n</code></pre>\n2. Extra toppings on a sandwich:\n<pre><code>\n[{\"Bacon\", \"1.00\"}, {\"Avocado\", \"2.00\"}]\n</code></pre>\n\nExample Cost Substructure:\n<pre><code>\n{\n  \"type\": \"PRICE\",\n  \"price\": \"9.50\",\n  \"unit\": \"Per Sandwich\",\n  \"rangeTo\": \"\",\n  \"other\": \"\",\n  \"options\": [\n    {\"name\": \"Bacon\", \"price\": \"1.00\", \"calorie\": 150},\n    {\"name\": \"Avocado\", \"price\": \"2.00\", \"calorie\": 60}\n  ]\n}\n</code></pre>\n\n## Calories\nThe Calories structure is used in Menus only. You are able to display calories in two ways:\n1. FIXED: A simple calorie count (e.g., **calorie** = 250)\n2. RANGE: A calorie count range (e.g., **calorie** = 250, **rangeTo** = 500)\n\nExample Calorie Substructure:\n<pre><code>\n{\n  \"type\": \"RANGE\",\n  \"calorie\": 250,\n  \"rangeTo\": 500\n}\n</code></pre>\n"
+  },
+  "servers": [
+    {
+      "url": "https://lists.yext-pub.com"
+    }
+  ],
+  "paths": {
+    "/lists": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/pid"
+        },
+        {
+          "$ref": "#/components/parameters/listingId"
+        },
+        {
+          "$ref": "#/components/parameters/yextId"
+        },
+        {
+          "$ref": "#/components/parameters/listId"
+        },
+        {
+          "$ref": "#/components/parameters/type"
+        },
+        {
+          "$ref": "#/components/parameters/template"
+        },
+        {
+          "$ref": "#/components/parameters/format"
+        }
+      ],
+      "get": {
+        "operationId": "getEclList",
+        "summary": "Get List",
+        "description": "Use Get List to retrieve Enhanced Content List (ECL) content in the following use cases:\n1. Fetch the HTML for a specific type of List.\n  * **Use listingId, template**\n  * Response will be rendered into a template and returned for direct display to the user\n2. Fetch the structured data (JSON) for a specific List\n  * **Use listingId, listId**\n3. Fetch the structured data (JSON) for a specific type of List\n  * **Use listingId, type**\n4. Fetch the structured data (JSON) for all Lists associated with a listing\n  * **Use listingId**\n",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/GetECLSuccess"
+          },
+          "400": {
+            "description": "Bad request (Incorrect Format)"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "pid": {
+        "name": "pid",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Publisher secure ID. This value will be provided to you.\n"
+      },
+      "listingId": {
+        "name": "listingId",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Publisher listing ID\n"
+      },
+      "yextId": {
+        "name": "yextId",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "description": "The Yext listing ID\n"
+      },
+      "listId": {
+        "name": "listId",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "description": "ECL ID (Yext-assigned)\n"
+      },
+      "type": {
+        "name": "type",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "MENU",
+            "PRODUCTS",
+            "BIOS",
+            "EVENTS"
+          ]
+        },
+        "description": "Type of lists to return\n"
+      },
+      "template": {
+        "name": "template",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        },
+        "description": "This parameter specifies the template to use when rendering the List content.\nYext will provide a list of your available templates. Yext configures each template with the type of data that it accepts -- for example, the template \"mobile-menu\" may be configured to render all Lists on a listing of type MENU.\n* If no template is specified, all List data will be rendered using a default template\n* Required if fetching HTML\n"
+      },
+      "format": {
+        "name": "format",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "html",
+            "json"
+          ]
+        },
+        "description": "An alternative way to specify the desired content type of the response\n"
+      }
+    },
+    "schemas": {
+      "Section": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the section.  Here are examples of section names for each type:\n* Menu: [Appetizer, Entree, Dessert]\n* Products: [Kenmore, Craftsman]\n* Bios: [Dentists, Pediatrics]\n* Events: [\"\"]\n* The name field may contain the empty string (\"\"), which indicates that the enclosed items were not assigned to a section.\nEvents in a single list will never be divided into multiple sections. All events in a given list will always be in a single section with the name \"\", in order to preserve the structure used in the other list types.\n"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the section"
+          },
+          "items": {
+            "type": "array",
+            "description": "One of:\n* A list of Menu Items\n* A list of Bios\n* A list of Products\n* A list of Events\n**See examples of each above**\n"
+          }
+        }
+      },
+      "ECL": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID of this list (Yext-assigned)"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the list.  Here are examples of list names for each type:\n* Menu: [Breakfast, Lunch, Dinner]\n* Products: [Mens, Womens]\n* Bios: [General Practitioners, Specialists]\n* Events: [Concerts, Workshops]\n"
+          },
+          "description": {
+            "type": "string",
+            "description": "The label for this list type, as it should appear on the list type's button or link in the PowerListing (e.g., Our Doctors for Bios, Store Events for Events)\nDefaults are:\n* Menu\n* Products\n* Bios\n* Events\n"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "MENU",
+              "PRODUCTS",
+              "BIOS",
+              "EVENTS"
+            ]
+          },
+          "size": {
+            "type": "integer",
+            "description": "The number of items in the list\n"
+          },
+          "sourceUrl": {
+            "type": "string",
+            "description": "The URL of the source the list's content is retrieved from\n"
+          },
+          "sections": {
+            "type": "array",
+            "description": "The list's sections\n",
+            "items": {
+              "$ref": "#/components/schemas/Section"
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "GetECLSuccess": {
+        "description": "(JSON Format)",
+        "content": {
+          "application/json": {
+            "schema": {
+              "title": "GetECLSuccess",
+              "type": "object",
+              "properties": {
+                "response": {
+                  "$ref": "#/components/schemas/ECL"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

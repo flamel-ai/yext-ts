@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.gen-specs/
+logs/
+*.log
+.DS_Store
+.env
+.env.*
+# NOTE: generated SDK code under src/**/*.gen.ts IS committed on purpose.

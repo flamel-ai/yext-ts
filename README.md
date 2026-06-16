@@ -1,0 +1,132 @@
+# yext-ts
+
+A clean, fully-typed TypeScript SDK for the [Yext API](https://hitchhikers.yext.com/docs/), generated from Yext's official [OpenAPI specs](https://github.com/yext/openapi) with [`@hey-api/openapi-ts`](https://heyapi.dev) and [zod](https://zod.dev) validation.
+
+- **All 11 Yext APIs**, one tree-shakeable sub-module each.
+- **Typed fetch SDK** — every operation is a typed function.
+- **zod schemas** for every model, plus automatic **response validation**.
+- **Auth handled for you** — set a credential + API version once.
+
+## Install
+
+```bash
+npm install yext-ts
+# or: pnpm add yext-ts
+```
+
+Requires Node 20+. `zod` is a dependency (no peer-install needed).
+
+## Modules
+
+Each Yext API is its own subpath import:
+
+| Import | API |
+|---|---|
+| `yext-ts/admin` | Admin |
+| `yext-ts/answers` | Answers / Search |
+| `yext-ts/chat` | Chat |
+| `yext-ts/events` | Events |
+| `yext-ts/knowledge` | Knowledge Graph (entities) |
+| `yext-ts/live` | Live (content delivery) |
+| `yext-ts/listings` | Publisher Listings |
+| `yext-ts/publisher-ecl` | Publisher ECL |
+| `yext-ts/publisher-notify-review` | Publisher Notify Review |
+| `yext-ts/publisher-tracking-pixel` | Publisher Tracking Pixel |
+| `yext-ts/webhooks` | Webhooks |
+
+The package root (`yext-ts`) re-exports every module namespaced (`knowledge`, `listings`, …) plus all the auth helpers. Prefer subpath imports for the smallest bundle.
+
+## Authentication
+
+Yext accepts three credential shapes, and **every** request also needs a `v` API-version date (`YYYYMMDD`). `yext-ts` injects both for you at the fetch layer, so you configure once and never thread them through individual calls.
+
+| Credential | Sent as |
+|---|---|
+| `{ type: "apiKey", value }` | `api_key` query parameter |
+| `{ type: "apiKeyHeader", value }` | `api-key` request header |
+| `{ type: "accessToken", value }` | `access_token` query parameter (OAuth) |
+
+### Configure one API's client
+
+```ts
+import { client, listEntities } from "yext-ts/knowledge";
+import { configureYextClient } from "yext-ts";
+
+configureYextClient(client, {
+  credential: { type: "apiKey", value: process.env.YEXT_API_KEY! },
+  version: "20250401",
+});
+
+const { data, error } = await listEntities({ path: { accountId: "me" }, query: {} });
+//      ^ fully typed + response-validated; `api_key` and `v` were injected automatically
+```
+
+### Configure every API at once
+
+```ts
+import { configureYext } from "yext-ts";
+
+configureYext({
+  credential: { type: "accessToken", value: oauthAccessToken },
+  version: "20250401",
+});
+```
+
+### OAuth (authorization-code flow)
+
+```ts
+import { buildYextAuthorizeUrl, requestYextOAuthToken } from "yext-ts";
+
+// 1. Send the user here to authorize your app:
+const authUrl = buildYextAuthorizeUrl({
+  clientId: process.env.YEXT_CLIENT_ID!,
+  redirectUri: "https://app.example.com/yext/callback",
+  scope: "read_entities write_entities",
+});
+
+// 2. In your redirect handler, exchange the `?code=...`:
+const token = await requestYextOAuthToken({
+  clientId: process.env.YEXT_CLIENT_ID!,
+  clientSecret: process.env.YEXT_CLIENT_SECRET!,
+  code: codeFromCallback,
+  redirectUri: "https://app.example.com/yext/callback",
+});
+
+configureYext({ credential: { type: "accessToken", value: token.access_token } });
+```
+
+Use `environment: "sandbox"` on any of these helpers to target Yext's sandbox OAuth hosts.
+
+## zod schemas
+
+Every model has a generated zod schema, exposed under each module's `schemas` namespace:
+
+```ts
+import { schemas } from "yext-ts/knowledge";
+
+const result = schemas.zEntityWrite.safeParse(payload);
+if (!result.success) console.error(result.error);
+```
+
+Response bodies are validated against these schemas automatically. Request bodies are **not** validated client-side (the API validates them), which is what lets auth + version inject transparently.
+
+## Per-call overrides
+
+Anything you pass on a call wins over the injected defaults — e.g. pass `query: { v: "20240101" }` to pin a different version for one request, or `auth`/`baseUrl` via the client config.
+
+## Development
+
+```bash
+pnpm install
+pnpm fetch-specs   # vendor the 11 specs from github.com/yext/openapi into specs/
+pnpm generate      # normalize specs + regenerate src/<module>/*.gen.ts
+pnpm typecheck
+pnpm test
+pnpm build         # emit dist/ (ESM + .d.ts)
+```
+
+The generated `src/**/*.gen.ts` is committed so the SDK is reviewable and usable straight from source. `scripts/normalize-spec.ts` fixes a few upstream spec quirks (wrong-typed `default`s, an invalid query `style: "simple"`) before generation; the vendored `specs/` stay as the untouched upstream copies.
+
+## License
+
+MIT

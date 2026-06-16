@@ -1,0 +1,845 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Analytics Events API",
+    "version": "1.0",
+    "description": "# Overview - Policies and Conventions\n## Overview\nThe Events API is used for sending user events from your Yext digital experiences to Yext Analytics in near real-time.\n\nSpecifically, you can track standard actions such as:\n\n* CTA Clicks\n* Page Views\n* Chat Impressions\n* Thumbs Up\n\nThe full list of the standard actions supported by the Events API can be found [here](https://github.com/yext/analytics/blob/main/src/models/chat/Action.ts).\n\nYou can also track _custom actions_ by appending a `'C_'` to the beginning of the action name.\n\nFor more information on how to configure analytics events in the @yext/analytics SDK, including defining standard and custom actions, custom tags and properties, and more, view our SDK documentation [here](https://github.com/yext/analytics).\n\n## Rate Limits / SLOs\n### Rate Limits\n\nApps may be rate-limited if they are sending too many events in a short period of time. If you are currently over your limit, our API will return a 429 error, and the response object returned by our API will be empty.\n\n### SLOs\n\n<table>\n  <tr>\n   <td><strong>Objective</strong>\n   </td>\n   <td><strong>Metric</strong>\n   </td>\n  </tr>\n  <tr>\n   <td>Availability\n   </td>\n   <td>99.5%\n   </td>\n  </tr>\n</table>\n\n## Serialization\n\nThe Events API only accepts data in JSON format.\n\n# Events API Reference\n## Domains\nThe Events API can be accessed at the following domains:\n\n### Production\n\n#### US Partition\n\n`POST: aws.us.yextevents.com/*`\n\n`POST: us.yextevents.com/*`(No cloud provider specified)\n\n#### EU Partition\n\n`POST: gcp.eu.yextevents.com/*`\n\n`POST: eu.yextevents.com/*`(No cloud provider specified)\n\n## Authentication\n\nAll requests to the Events API must be authenticated via an API key. This can be stored in the Authorization request header, like `KEY {{api_key}}`, or in the request body via the `authorization` parameter, like `\"authorization\": \"KEY {{api_key}}\"`.\n\nThe app associated with the request must have **read/write** permissions to the **Events API** endpoint of the Events API.\n\nFor Yext Chat, the API key generated when you create your chatbot _automatically_ has access to the Events API endpoint with read / write permissions.\n\n<table>\n  <tr>\n   <td><strong><code>api_key</code></strong>\n   </td>\n   <td>required\n   </td>\n   <td><code>string</code>\n   </td>\n   <td>The API key for authentication purposes. The app associated with the API key must have Events API write permissions.\n<p>\nTo find your app’s API key or to create a new app, visit the Developer Console.\n   </td>\n  </tr>\n</table>\n\n## Domain properties\n\n<table>\n  <tr>\n   <td><strong><code>partition</code></strong>\n   </td>\n   <td>required\n   </td>\n   <td><code>string</code>\n   </td>\n   <td>The regional partition to send the event to (e.g. <strong><code>US</code></strong> or <strong><code>EU</code></strong>).\n   </td>\n  </tr>\n  <tr>\n   <td><strong><code>cloudProvider</code></strong>\n   </td>\n   <td>optional\n   </td>\n   <td><code>string</code>\n   </td>\n   <td>The cloud provider, either AWS or Google Cloud. Customers in the US partition should use ‘aws’. Customers in the EU should use ‘gcp’.\n   </td>\n  </tr>\n</table>\n"
+  },
+  "servers": [
+    {
+      "url": "https://us.yextevents.com",
+      "description": "Server for US production environment"
+    },
+    {
+      "url": "https://aws.us.yextevents.com",
+      "description": "Server for US production environment with AWS as cloud provider"
+    },
+    {
+      "url": "https://eu.yextevents.com",
+      "description": "Server for EU production environment"
+    },
+    {
+      "url": "https://gcp.eu.yextevents.com",
+      "description": "Server for EU production environment with GCP as cloud provider"
+    }
+  ],
+  "paths": {
+    "/accounts/me/events": {
+      "post": {
+        "operationId": "sendEvents",
+        "summary": "Analytics Events",
+        "description": "Send user events from your Yext digital experiences to Yext Analytics in near real-time.\n\nThis documentation is for version `1.0.0` of the Events API. If you are still using version\n`0.6`, refer to the documentation in the yext/analytics Github repository \n[here](https://github.com/yext/analytics/blob/release/v0.6.8/src/models/EventPayload.ts).\n",
+        "requestBody": {
+          "description": "JSON object containing the events to be sent to Yext Analytics",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendEventsRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful request, return analytics event ID that related to this event",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SendEventsResponse",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The ID of the event."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Exceeded the limit of requests in the last minute",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SendEventsResponse",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The ID of the event."
+                    },
+                    "errors": {
+                      "type": "array",
+                      "description": "Array of error messages that occurred during the request."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SendEventsResponse",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The ID of the event."
+                    },
+                    "errors": {
+                      "type": "array",
+                      "description": "Array of error messages that occurred during the request."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "api-key": {
+        "type": "http",
+        "scheme": "KEY",
+        "bearerFormat": "api-key"
+      },
+      "jwt": {
+        "type": "http",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "SendEventsRequestBody": {
+        "type": "object",
+        "title": "Analytics Event",
+        "description": "Represents an event for analytics purposes.",
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "description": "The action which caused the event.",
+            "oneOf": [
+              {
+                "type": "string",
+                "title": "Standard",
+                "description": "`caseSensitive: false` <br>The action which caused the event. For a full list of supported standard actions, see our documentation on Hitchhikers [here](https://hitchhikers.yext.com/docs/analytics/standard-actions/). <br> **Note:** If the action is `CHAT_RESPONSE`, the `responseId` must be present in the `chat` domain object.",
+                "enum": [
+                  "ADD_TO_CART",
+                  "ALL_TAB_NAVIGATION",
+                  "APPLY",
+                  "AUTO_COMPLETE_SELECTION",
+                  "BACKWARD_PAGINATE",
+                  "BOOK",
+                  "BRAND_ICON",
+                  "CASE_START",
+                  "CASE_SUBMITTED",
+                  "CHAT_IMPRESSION",
+                  "CHAT_LINK_CLICK",
+                  "CHAT_RESPONSE",
+                  "COLLAPSE",
+                  "CTA_CLICK",
+                  "DRIVING_DIRECTIONS",
+                  "EVENT",
+                  "EXPAND",
+                  "FEATURED_MESSAGE",
+                  "FILTERING_WITHIN_SECTION",
+                  "FORWARD_PAGINATE",
+                  "HEADER_LINKS",
+                  "ITEM_IN_LIST",
+                  "MAP_CARD",
+                  "MAP_PIN",
+                  "MENU",
+                  "MESSAGE",
+                  "ORDER",
+                  "PAGE_VIEW",
+                  "PAGINATE",
+                  "POST",
+                  "PRESET_PROMPT",
+                  "PRODUCT",
+                  "PROFILE",
+                  "QUESTION_FOCUS",
+                  "QUESTION_SUBMIT",
+                  "REMOVED_FILTER",
+                  "REVIEW",
+                  "SCROLL_TO_BOTTOM_OF_PAGE",
+                  "SEARCH_BAR_IMPRESSION",
+                  "SEARCH_CLEAR_BUTTON",
+                  "TAP_TO_CALL",
+                  "THUMBS_DOWN",
+                  "THUMBS_UP",
+                  "TICKET_URL",
+                  "TITLE",
+                  "VERTICAL_TAB_NAVIGATION",
+                  "VERTICAL_VIEW_ALL",
+                  "VOICE_START",
+                  "VOICE_STOP",
+                  "WEBSITE"
+                ]
+              },
+              {
+                "type": "string",
+                "pattern": "^[Cc]_[a-zA-Z0-9_-]{1,30}$",
+                "title": "Custom",
+                "description": "Specifies a custom action for the event, which must start with \"`C_`\". `caseSensitive: false`, `pattern: \"^[Cc]_[a-zA-Z0-9_-]{1,30}$\"`"
+              }
+            ]
+          },
+          "authorization": {
+            "type": "string",
+            "description": "An alternative to using the Authorization HTTP header. If a value is provided, it will override any Authorization header. Api keys should be formatted like \"KEY \\<apiKey\\>\", access tokens should be formatted like \"Bearer \\<bearerToken\\>\"",
+            "minLength": 1,
+            "maxLength": 8192,
+            "pattern": "^(KEY|Bearer)\\s.+$"
+          },
+          "bot": {
+            "description": "Whether the event is the result of bot activity.",
+            "default": "$auto",
+            "oneOf": [
+              {
+                "type": "boolean",
+                "description": "Specifies that the event should not be considered bot traffic."
+              },
+              {
+                "type": "string",
+                "title": "$auto",
+                "enum": [
+                  "$auto"
+                ],
+                "description": "Indicates to automatically detect whether this event originates from a bot."
+              }
+            ]
+          },
+          "browserAgent": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Information about the visitor's device and browser.",
+            "default": {
+              "browser": "$auto",
+              "browserVersion": "$auto",
+              "device": "$auto",
+              "deviceClass": "$auto",
+              "os": "$auto",
+              "osVersion": "$auto",
+              "userAgent": "$auto"
+            },
+            "properties": {
+              "browser": {
+                "default": "$auto",
+                "description": "The browser associated with the event.",
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "pattern": "(?!\\$auto$)(^[\\x20-\\x7E]{1,128}$)",
+                    "title": "string",
+                    "description": "Specifies the browser for the event. `pattern: \"^[\\x20-\\x7E]{1,128}$\"`"
+                  },
+                  {
+                    "type": "string",
+                    "title": "$auto",
+                    "enum": [
+                      "$auto"
+                    ],
+                    "description": "Indicates to automatically determine the browser from request headers, or the value of the `userAgent` property if specified."
+                  },
+                  {
+                    "type": "null",
+                    "title": "null",
+                    "description": "Specifies that no browser should be stored with the event."
+                  }
+                ]
+              },
+              "browserVersion": {
+                "default": "$auto",
+                "description": "The browser version associated with the event.",
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "pattern": "(?!\\$auto$)(^[\\x20-\\x7E]{1,128}$)",
+                    "title": "string",
+                    "description": "Specifies the browser version for the event. `pattern: \"^[\\x20-\\x7E]{1,128}$\"`"
+                  },
+                  {
+                    "type": "string",
+                    "title": "$auto",
+                    "enum": [
+                      "$auto"
+                    ],
+                    "description": "Indicates to automatically determine the browser version from request headers, or the value of the `userAgent` property if specified."
+                  },
+                  {
+                    "type": "null",
+                    "title": "null",
+                    "description": "Specifies that no browser version should be stored with the event."
+                  }
+                ]
+              },
+              "device": {
+                "default": "$auto",
+                "description": "The device associated with the event.",
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "pattern": "(?!\\$auto$)(^[\\x20-\\x7E]{1,128}$)",
+                    "title": "string",
+                    "description": "Specifies the device for the event. `pattern: \"^[\\x20-\\x7E]{1,128}$\"`"
+                  },
+                  {
+                    "type": "string",
+                    "title": "$auto",
+                    "enum": [
+                      "$auto"
+                    ],
+                    "description": "Indicates to automatically determine the device from request headers, or the value of the `userAgent` property if specified."
+                  },
+                  {
+                    "type": "null",
+                    "title": "null",
+                    "description": "Specifies that no device should be stored with the event."
+                  }
+                ]
+              },
+              "deviceClass": {
+                "default": "$auto",
+                "description": "The class of device associated with the event.",
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "pattern": "(?!\\$auto$)(^[\\x20-\\x7E]{1,32}$)",
+                    "title": "string",
+                    "description": "Specifies the device class for the event. `caseSensitive: false`, `pattern: \"^[\\x20-\\x7E]{1,32}$\"`"
+                  },
+                  {
+                    "type": "string",
+                    "title": "$auto",
+                    "enum": [
+                      "$auto"
+                    ],
+                    "description": "Indicates to automatically determine the device class from request headers, or the value of the `userAgent` property if specified."
+                  },
+                  {
+                    "type": "null",
+                    "title": "null",
+                    "description": "Specifies that no device class should be stored with the event."
+                  }
+                ]
+              },
+              "os": {
+                "default": "$auto",
+                "description": "The operating system associated with the event.",
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "pattern": "(?!\\$auto$)(^[\\x20-\\x7E]{1,128}$)",
+                    "title": "string",
+                    "description": "Specifies the operating system for the event. `pattern: \"^[\\x20-\\x7E]{1,128}$\"`"
+                  },
+                  {
+                    "type": "string",
+                    "title": "$auto",
+                    "enum": [
+                      "$auto"
+                    ],
+                    "description": "Indicates to automatically determine the operating system from request headers, or the value of the `userAgent` property if specified."
+                  },
+                  {
+                    "type": "null",
+                    "title": "null",
+                    "description": "Specifies that no operating system should be stored with the event."
+                  }
+                ]
+              },
+              "osVersion": {
+                "default": "$auto",
+                "description": "The operating system version associated with the event.",
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "pattern": "(?!\\$auto$)(^[\\x20-\\x7E]{1,128}$)",
+                    "title": "string",
+                    "description": "Specifies the operating system version for the event. `pattern: \"^[\\x20-\\x7E]{1,128}$\"`"
+                  },
+                  {
+                    "type": "string",
+                    "title": "$auto",
+                    "enum": [
+                      "$auto"
+                    ],
+                    "description": "Indicates to automatically determine the operating system version from request headers, or the value of the `userAgent` property if specified."
+                  },
+                  {
+                    "type": "null",
+                    "title": "null",
+                    "description": "Specifies that no operating system version should be stored with the event."
+                  }
+                ]
+              },
+              "userAgent": {
+                "description": "The user agent string for the event.",
+                "default": "$auto",
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "pattern": "(?!\\$auto$)(^[\\x20-\\x7E]{1,8192}$)",
+                    "title": "string",
+                    "description": "Specifies the user agent string for the event. `pattern: \"^[\\x20-\\x7E]{1,8192}$\"`"
+                  },
+                  {
+                    "type": "string",
+                    "title": "$auto",
+                    "enum": [
+                      "$auto"
+                    ],
+                    "description": "Indicates to use the `User-Agent` header of the request."
+                  },
+                  {
+                    "type": "null",
+                    "title": "null",
+                    "description": "Specifies that no user agent should be stored with the event."
+                  }
+                ]
+              }
+            }
+          },
+          "chat": {
+            "type": "object",
+            "title": "Chat",
+            "description": "The Yext Chat properties of the event.",
+            "properties": {
+              "botId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 50,
+                "description": "The ID of the chat bot an event was tied to."
+              },
+              "conversationId": {
+                "type": "string",
+                "minLength": 48,
+                "maxLength": 48,
+                "example": "MDFIQjlKWkM5SlhaU0dEUjJNRFBCUFdLWTHeIqvURTeRr2EC",
+                "description": "The ID of a conversation an event was tied to. Not all events are tied to a specific conversation. For example, both impressions are registered before the conversation begins. Must be 48 chars long"
+              },
+              "responseId": {
+                "type": "string",
+                "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$",
+                "description": "The ID of the response an event was tied to. Not all events are tied to a specific response, but if present it must be a valid ULID. This is analogous to queryId in Search. `pattern: \"^[0-9A-HJKMNP-TV-Z]{26}$\"`"
+              }
+            },
+            "required": [
+              "botId"
+            ],
+            "additionalProperties": false
+          },
+          "clientSdk": {
+            "type": "object",
+            "title": "Client SDK",
+            "description": "For the Yext client SDKs involved in the event, this is an object mapping the names of those SDKs to the version labels of those SDKs.",
+            "maxProperties": 100,
+            "properties": {
+              "^[a-zA-Z][a-zA-Z0-9_]{0,31}$": {
+                "type": "string"
+              }
+            }
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000000000,
+            "default": 1,
+            "description": "When one record summarizes multiple events, this is the number of events the record represents. The event is treated as if it is duplicated this many times."
+          },
+          "customTags": {
+            "type": "object",
+            "description": "Up to 10 pairs matching custom string keys to string values to associate with the event. Keys are case-insensitive; values are case-sensitive. Property Name `pattern: \"^[a-zA-Z][a-zA-Z0-9_]{0,31}$\"`",
+            "maxProperties": 10,
+            "properties": {
+              "^[a-zA-Z][a-zA-Z0-9_]{0,31}$": {
+                "type": "string"
+              }
+            }
+          },
+          "customValues": {
+            "type": "object",
+            "description": "Up to 10 pairs matching custom string keys to number values to associate with the event. Keys are case-insensitive. Property Name `pattern: \"^[a-zA-Z][a-zA-Z0-9_]{0,31}$\"`",
+            "maxProperties": 10,
+            "properties": {
+              "^[a-zA-Z][a-zA-Z0-9_]{0,31}$": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 1000000000
+              }
+            }
+          },
+          "destinationUrl": {
+            "type": "string",
+            "format": "uri",
+            "title": "URL",
+            "description": "The URL of the page the event is directing the visitor to. `format: uri`"
+          },
+          "entity": {
+            "oneOf": [
+              {
+                "type": "string",
+                "title": "entityId",
+                "minLength": 1,
+                "maxLength": 38,
+                "description": "The mutable, customer-settable entity ID for the entity associated with the event."
+              },
+              {
+                "type": "integer",
+                "title": "entityUid",
+                "minimum": 0,
+                "description": "The immutable entity ID set by the system. This is an internal ID."
+              }
+            ]
+          },
+          "internalUser": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates whether the event is the result of internal activity."
+          },
+          "ip": {
+            "description": "The IP address for the event.",
+            "default": {
+              "address": "$auto",
+              "algorithm": "HASH"
+            },
+            "oneOf": [
+              {
+                "type": "object",
+                "title": "IP",
+                "properties": {
+                  "address": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "format": "ipv4",
+                        "title": "IPv4",
+                        "description": "Specifies the IPv4 address associated with the event. `format: \"ipv4\"`"
+                      },
+                      {
+                        "type": "string",
+                        "title": "$auto",
+                        "enum": [
+                          "$auto"
+                        ],
+                        "description": "Indicates to use the Source IP address from the IP header of the request. This IP address is only used if the `Yext-Opt-In: ip` header is present."
+                      }
+                    ]
+                  },
+                  "algorithm": {
+                    "type": "string",
+                    "enum": [
+                      "HASH"
+                    ],
+                    "description": "The algorithm to use to anonymize the IP address after collection."
+                  }
+                },
+                "required": [
+                  "address",
+                  "algorithm"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null",
+                "title": "null",
+                "description": "Specifies that no IP address should be associated with the event."
+              }
+            ]
+          },
+          "label": {
+            "type": "string",
+            "description": "A label assigned to the event, e.g. a CTA label.",
+            "minLength": 1,
+            "maxLength": 16777216
+          },
+          "locale": {
+            "default": "$auto",
+            "description": "The locale of the user who generated the event.",
+            "oneOf": [
+              {
+                "type": "string",
+                "title": "Locale",
+                "minLength": 1,
+                "maxLength": 16,
+                "pattern": "^(?!(\\$auto)$).*$",
+                "description": "Specifies the locale of the visitor for the event, e.g. `en-US`."
+              },
+              {
+                "type": "string",
+                "title": "$auto",
+                "enum": [
+                  "$auto"
+                ],
+                "description": "Indicates to automatically determine the locale from the Accept-Language header."
+              },
+              {
+                "type": "null",
+                "title": "null",
+                "description": "Specifies that no locale information should be stored with the event."
+              }
+            ]
+          },
+          "location": {
+            "description": "The location information of the visitor for the event. Either a Coordinates object with both latitude and longitude or a string with the country of the visitor for the event, as a ISO 3166-1 alpha-2 country code.",
+            "oneOf": [
+              {
+                "type": "object",
+                "title": "Coordinates Object",
+                "description": "The geographic coordinates of the visitor for the event.",
+                "properties": {
+                  "coordinates": {
+                    "type": "object",
+                    "description": "The geographic coordinates of the visitor for the event.",
+                    "properties": {
+                      "latitude": {
+                        "type": "number",
+                        "minimum": -90,
+                        "maximum": 90,
+                        "description": "The latitude, in degrees North."
+                      },
+                      "longitude": {
+                        "type": "number",
+                        "minimum": -180,
+                        "maximum": 180,
+                        "description": "The longitude, in degrees East."
+                      }
+                    },
+                    "required": [
+                      "latitude",
+                      "longitude"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "coordinates"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "string",
+                "title": "Country Code",
+                "minLength": 2,
+                "maxLength": 2,
+                "pattern": "^[A-Za-z]{2}$",
+                "description": "The country of the visitor for the event, as a ISO 3166-1 alpha-2 country code. `caseSensitive: false`"
+              }
+            ]
+          },
+          "pages": {
+            "type": "object",
+            "title": "Pages",
+            "description": "Fields specific to reporting Yext Pages Analytics Events",
+            "properties": {
+              "scope": {
+                "type": "string",
+                "description": "The scope of an action. Applies to Pages events."
+              },
+              "originalEventName": {
+                "type": "string",
+                "description": "The Event name as it was used in previous analytics implementations."
+              },
+              "siteUid": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "The UID of the site an event was tied to."
+              },
+              "template": {
+                "type": "string",
+                "description": "The ID of the template from which a site was generated."
+              }
+            },
+            "additionalProperties": false
+          },
+          "pageUrl": {
+            "description": "The URL of the page the event occurred on.",
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uri",
+                "title": "URL",
+                "description": "Specifies the URL of the page the event occurred on. `format: uri`"
+              },
+              {
+                "type": "string",
+                "title": "$auto",
+                "description": "Indicates to use the `Referer` header of the request."
+              },
+              {
+                "type": "null",
+                "title": "null",
+                "description": "Specifies that no page URL should be stored with the event. Will fallback to `document.URL` if it exists."
+              }
+            ]
+          },
+          "referrerUrl": {
+            "description": "The URL of the page which the visitor came from prior to the event.",
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uri",
+                "title": "URL",
+                "description": "Specifies the URL of the page which the visitor came from prior to the event. `format: uri`"
+              },
+              {
+                "type": "null",
+                "title": "null",
+                "description": "Specifies that no referrer URL should be stored with the event. Will fallback to `document.referrer` if it exists."
+              }
+            ]
+          },
+          "search": {
+            "type": "object",
+            "title": "Search",
+            "description": "Fields specific to reporting Yext Search Analytics Events",
+            "properties": {
+              "searchId": {
+                "type": "string",
+                "description": "Unique identifier of the search"
+              },
+              "queryId": {
+                "type": "string",
+                "description": "Unique identifier for a single query across pagination"
+              },
+              "verticalKey": {
+                "type": "string",
+                "description": "The vertical key on which the event occurred, if any"
+              },
+              "isDirectAnswer": {
+                "type": "boolean",
+                "description": "Whether or not the event occurred on a direct answer card"
+              },
+              "versionLabel": {
+                "type": "string",
+                "enum": [
+                  "PRODUCTION",
+                  "STAGING"
+                ],
+                "description": "The label of the version number of the search config. Either \"PRODUCTION\" or \"STAGING\""
+              },
+              "versionNumber": {
+                "type": "number",
+                "description": "The version number of the search config"
+              },
+              "experienceKey": {
+                "type": "string",
+                "description": "The identifier of the search experience."
+              },
+              "isGenerativeDirectAnswer": {
+                "type": "boolean",
+                "description": "Whether or not the event occurred on a generative direct answer card"
+              }
+            },
+            "required": [
+              "experienceKey"
+            ],
+            "additionalProperties": false
+          },
+          "searchTerm": {
+            "type": "string",
+            "description": "The query entered by the user.",
+            "minLength": 1,
+            "maxLength": 16777216
+          },
+          "sessionId": {
+            "description": "ID of the user session associated with event. `pattern: \"^[\\x20-\\x7E]{1,36}$\"`",
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[\\x20-\\x7E]{1,36}$",
+                "title": "Session ID"
+              },
+              {
+                "type": "null",
+                "title": "null",
+                "description": "Specifies that no session ID should be stored with the event."
+              }
+            ]
+          },
+          "timestamp": {
+            "description": "The timestamp at which the event occurred.",
+            "default": "$auto",
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "title": "ISO Timestamp",
+                "description": "Specifies the timestamp at which the event occurred. `format: \"date-time\"`"
+              },
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 3250091520000,
+                "title": "Epoch millisecond",
+                "description": "Specifies the timestamp at which the event occurred as the number of milliseconds since 1970-01-01T00:00:00Z UTC, ignoring leap seconds."
+              },
+              {
+                "type": "string",
+                "title": "$auto",
+                "enum": [
+                  "$auto"
+                ],
+                "description": "Indicates to use the time when the request was received as the event timestamp."
+              }
+            ]
+          },
+          "value": {
+            "type": "object",
+            "title": "Value",
+            "description": "The monetary value of the event",
+            "properties": {
+              "amount": {
+                "type": "number",
+                "multipleOf": 0.0001,
+                "description": "The monetary value of the event."
+              },
+              "currency": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 3,
+                "pattern": "^[A-Z]{3}$",
+                "description": "The ISO 4217 currency code of the currency the value is expressed in. `pattern: \"^[A-Z]{3}$\"`"
+              }
+            },
+            "required": [
+              "amount",
+              "currency"
+            ],
+            "additionalProperties": false
+          },
+          "visitor": {
+            "type": "object",
+            "description": "The visitor related to the event. Keys are visitor methods and values are visitor IDs. PropertyName pattern: \"^[a-zA-Z0-9_-]{1,16}$\". Value pattern: \"^[\\x20-\\x7E]{1,64}$\"",
+            "properties": {
+              "^[a-zA-Z0-9_-]{1,16}$": {
+                "type": "string",
+                "pattern": "^[\\x20-\\x7E]{1,64}$"
+              }
+            },
+            "maxProperties": 100
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "api-key": []
+    },
+    {
+      "jwt": []
+    }
+  ]
+}

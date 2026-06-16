@@ -1,0 +1,271 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Chat API",
+    "version": "2.0"
+  },
+  "servers": [
+    {
+      "url": "https://cdn.yextapis.com/v2"
+    }
+  ],
+  "paths": {
+    "/accounts/{accountId}/chat/{botId}/message": {
+      "post": {
+        "operationId": "message",
+        "description": "Send messages and receive responses from a Yext Chat bot.",
+        "summary": "Chat: Message Endpoint",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/accountId"
+          },
+          {
+            "$ref": "#/components/parameters/v"
+          },
+          {
+            "$ref": "#/components/parameters/botId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Message Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "MessageResponse",
+                  "type": "object",
+                  "properties": {
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMeta"
+                    },
+                    "response": {
+                      "type": "object",
+                      "properties": {
+                        "conversationId": {
+                          "$ref": "#/components/schemas/conversationId"
+                        },
+                        "message": {
+                          "$ref": "#/components/schemas/Message"
+                        },
+                        "notes": {
+                          "$ref": "#/components/schemas/Notes"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Message Response",
+                  "type": "object",
+                  "properties": {
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMeta"
+                    },
+                    "error": {
+                      "$ref": "#/components/schemas/Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "messages": {
+                    "description": "List of messages representing the full conversation history.",
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Message"
+                    }
+                  },
+                  "conversationId": {
+                    "$ref": "#/components/schemas/conversationId"
+                  },
+                  "notes": {
+                    "$ref": "#/components/schemas/Notes"
+                  },
+                  "context": {
+                    "type": "object",
+                    "description": "Additional, user-defined information that is passed to the chatbot, and can be referenced in the instruction flow."
+                  },
+                  "version": {
+                    "type": "string",
+                    "enum": [
+                      "LATEST",
+                      "STAGING",
+                      "PRODUCTION"
+                    ],
+                    "description": "The version of chatbot. Defaults to `LATEST`."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "query"
+      },
+      "api-key": {
+        "type": "apiKey",
+        "name": "api-key",
+        "in": "header"
+      }
+    },
+    "parameters": {
+      "accountId": {
+        "name": "accountId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "v": {
+        "name": "v",
+        "in": "query",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "A date in `YYYYMMDD` format."
+      },
+      "botId": {
+        "name": "botId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "The ID of the chatbot."
+      }
+    },
+    "schemas": {
+      "Message": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "description": "Timestamp when the message was received, in ISO 8601 format."
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "USER",
+              "BOT"
+            ],
+            "description": "Either `USER` if the message was sent by the human user, or `BOT` if the message was sent by the chatbot."
+          },
+          "text": {
+            "type": "string",
+            "description": "The text of the message."
+          }
+        }
+      },
+      "conversationId": {
+        "type": "string",
+        "description": "A ULID representing the conversation between the user and the chatbot."
+      },
+      "Notes": {
+        "type": "object",
+        "properties": {
+          "currentGoal": {
+            "type": "string",
+            "description": "The current goal the chatbot has detected the user is trying to achieve."
+          },
+          "currentStepIndices": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "The index of the step within the instructions of `currentGoal` that the chatbot is currently performing.\nIf the step is nested under a conditional `IF` step, it is represented with an array with multiple values.\nE.g., if the `IF` step is the third step in the goal, and the bot is on the second step within the `IF` step, the value would be `[2, 1]`.\n"
+          },
+          "collectedData": {
+            "type": "object",
+            "description": "The data that the chatbot has collected from the user so far."
+          },
+          "searchQuery": {
+            "type": "string",
+            "description": "The search query that the chatbot predicted and ran to retrieve the `queryResult`."
+          },
+          "queryResult": {
+            "type": "object",
+            "description": "The results returned in the Search, REST API call, or FUNCTION call using the `searchQuery`."
+          },
+          "goalFirstMsgIndex": {
+            "type": "integer",
+            "description": "The index of the message within `messages` when the `currentGoal` began.\nThis is important in some cases when the chatbot should not pull context from messages that are not part of the current goal.\n"
+          }
+        }
+      },
+      "ResponseMeta": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "example": "4f72b877-e2d0-4de4-9324-b9cf2c03e1a0",
+            "description": "Unique ID for this request / response."
+          }
+        }
+      },
+      "Error": {
+        "type": "array",
+        "description": "List of errors and warnings.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "description": "Code that uniquely identifies the error or warning."
+            },
+            "type": {
+              "type": "string",
+              "description": "Type of error.",
+              "enum": [
+                "FATAL_ERROR",
+                "NON_FATAL_ERROR",
+                "WARNING"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "description": "Message explaining the problem."
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "api_key": []
+    },
+    {
+      "api-key": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Chat API"
+    }
+  ]
+}
