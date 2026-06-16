@@ -1,4 +1,4 @@
-# yext-ts
+# @flamel-ai/yext-api
 
 [![CI](https://github.com/flamel-ai/yext-api/actions/workflows/ci.yml/badge.svg)](https://github.com/flamel-ai/yext-api/actions/workflows/ci.yml)
 
@@ -40,7 +40,7 @@ The package root (`@flamel-ai/yext-api`) re-exports every module namespaced (`kn
 
 ## Authentication
 
-Yext accepts three credential shapes, and **every** request also needs a `v` API-version date (`YYYYMMDD`). `yext-ts` injects both for you at the fetch layer, so you configure once and never thread them through individual calls. See Yext's [Management APIs docs](https://hitchhikers.yext.com/docs/managementapis/) for how credentials and the `v` parameter work.
+Yext accepts three credential shapes, and **every** request also needs a `v` API-version date (`YYYYMMDD`). `@flamel-ai/yext-api` injects both for you at the fetch layer, so you configure once and never thread them through individual calls. See Yext's [Management APIs docs](https://hitchhikers.yext.com/docs/managementapis/) for how credentials and the `v` parameter work.
 
 | Credential | Sent as |
 |---|---|

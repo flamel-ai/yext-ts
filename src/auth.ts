@@ -15,16 +15,16 @@
  *
  * Typical usage:
  *
- *   import { configureYext } from "@flamel-ai/yext-ts";
+ *   import { configureYext } from "@flamel-ai/yext-api";
  *   configureYext({ credential: { type: "apiKey", value: process.env.YEXT_API_KEY! }, version: "20250401" });
  *
- *   import { getEntity } from "@flamel-ai/yext-ts/knowledge";
+ *   import { getEntity } from "@flamel-ai/yext-api/knowledge";
  *   const { data } = await getEntity({ path: { entityId: "my-location" } });
  *
  * Or configure a single API's client:
  *
- *   import { client } from "@flamel-ai/yext-ts/knowledge";
- *   import { configureYextClient } from "@flamel-ai/yext-ts";
+ *   import { client } from "@flamel-ai/yext-api/knowledge";
+ *   import { configureYextClient } from "@flamel-ai/yext-api";
  *   configureYextClient(client, { credential: { type: "accessToken", value: token } });
  */
 import { z } from "zod";
@@ -169,13 +169,23 @@ export function withYextAuth(options: YextAuthOptions): {
   };
 }
 
-/** Schema for the OAuth token endpoint response. */
+/**
+ * Schema for the OAuth token endpoint response.
+ *
+ * Beyond the standard OAuth fields, Yext returns two app-scoped extras on the
+ * access-token response: `appSpecificAccountId` (the account id the token is
+ * bound to) and `accountName` (its human-readable name). Multi-tenant consumers
+ * persist these to label a connection without a follow-up account lookup, so we
+ * keep them on the schema rather than stripping them.
+ */
 export const yextOAuthTokenSchema = z.object({
   access_token: z.string(),
   token_type: z.string().optional(),
   expires_in: z.number().optional(),
   refresh_token: z.string().optional(),
   scope: z.string().optional(),
+  appSpecificAccountId: z.string().optional(),
+  accountName: z.string().optional(),
 });
 
 export type YextOAuthToken = z.infer<typeof yextOAuthTokenSchema>;
