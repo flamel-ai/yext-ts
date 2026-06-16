@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import {
   assertYextOk,
   buildYextAuthorizeUrl,
+  yextOAuthTokenSchema,
   withYextAuth,
   configureYext,
   configureYextClient,
@@ -144,6 +145,29 @@ describe("OAuth authorize URL", () => {
       buildYextAuthorizeUrl({ clientId: "c", redirectUri: "https://x/cb", environment: "sandbox" }),
     );
     expect(url.origin + url.pathname).toBe("https://sandbox.yext.com/oauth2/authorize");
+  });
+});
+
+describe("OAuth token schema", () => {
+  it("keeps Yext's app-scoped account fields (id + name) off the token response", () => {
+    const parsed = yextOAuthTokenSchema.parse({
+      access_token: "tok",
+      expires_in: 3600,
+      appSpecificAccountId: "12345",
+      accountName: "Acme Corp",
+      // Anything Yext doesn't document is still dropped.
+      somethingElse: "ignored",
+    });
+    expect(parsed.access_token).toBe("tok");
+    expect(parsed.appSpecificAccountId).toBe("12345");
+    expect(parsed.accountName).toBe("Acme Corp");
+    expect("somethingElse" in parsed).toBe(false);
+  });
+
+  it("treats the account fields as optional", () => {
+    const parsed = yextOAuthTokenSchema.parse({ access_token: "tok" });
+    expect(parsed.appSpecificAccountId).toBeUndefined();
+    expect(parsed.accountName).toBeUndefined();
   });
 });
 
