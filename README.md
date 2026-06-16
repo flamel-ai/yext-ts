@@ -24,9 +24,9 @@ Each Yext API is its own subpath import:
 |---|---|---|
 | `yext-ts/admin` | Admin | [Management APIs](https://hitchhikers.yext.com/docs/managementapis/) |
 | `yext-ts/answers` | Search | [Search](https://hitchhikers.yext.com/docs/search/) |
-| `yext-ts/chat` | Chat | [Chat](https://help.yext.com/hc/en-us/categories/49481259573275-Chat) |
+| `yext-ts/chat` | Chat | [Chat](https://hitchhikers.yext.com/docs/chat) |
 | `yext-ts/events` | Analytics Events | [Events APIs](https://hitchhikers.yext.com/docs/eventsapis/) |
-| `yext-ts/knowledge` | Knowledge Graph (entities) | [Management APIs](https://hitchhikers.yext.com/docs/managementapis/) |
+| `yext-ts/knowledge` | Knowledge Graph (entities) | [Knowledge Graph](https://hitchhikers.yext.com/docs/knowledge-graph) |
 | `yext-ts/live` | Live (content delivery) | [Content Delivery APIs](https://hitchhikers.yext.com/docs/contentdeliveryapis/) |
 | `yext-ts/listings` | Publisher Listings | [Publisher Listings API](https://hitchhikers.yext.com/publisherapis/publisherlistingsapi) |
 | `yext-ts/publisher-ecl` | Publisher ECL | [Publisher ECL API](https://hitchhikers.yext.com/publisherapis/publishereclapi) |
