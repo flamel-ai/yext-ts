@@ -1,6 +1,6 @@
 {
   "name": "@flamel-ai/yext-ts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "packageManager": "pnpm@10.33.0",
   "publishConfig": {
     "access": "public",
