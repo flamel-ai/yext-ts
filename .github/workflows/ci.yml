@@ -5,6 +5,11 @@ on:
     branches: [main]
   pull_request:
 
+# Least privilege: CI only reads the repo. The release workflow holds the
+# write/id-token scopes it needs; PRs (incl. forks) never get write access.
+permissions:
+  contents: read
+
 jobs:
   # Core verification pipeline — runs on every push and PR (including forks).
   # No secrets needed; this is the gate that proves types/tests/build are green.
