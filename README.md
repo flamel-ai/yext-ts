@@ -12,8 +12,8 @@ A clean, fully-typed TypeScript SDK for the [Yext API](https://hitchhikers.yext.
 ## Install
 
 ```bash
-pnpm add yext-ts
-# or: npm install yext-ts
+pnpm add @flamel-ai/yext-ts
+# or: npm install @flamel-ai/yext-ts
 ```
 
 Requires Node 20+. `zod` is a dependency (no peer-install needed).
@@ -24,19 +24,19 @@ Each Yext API is its own subpath import:
 
 | Import | API | Yext docs |
 |---|---|---|
-| `yext-ts/admin` | Admin | [Management APIs](https://hitchhikers.yext.com/docs/managementapis/) |
-| `yext-ts/answers` | Search | [Search](https://hitchhikers.yext.com/docs/search/) |
-| `yext-ts/chat` | Chat | [Chat](https://hitchhikers.yext.com/docs/chat) |
-| `yext-ts/events` | Analytics Events | [Events APIs](https://hitchhikers.yext.com/docs/eventsapis/) |
-| `yext-ts/knowledge` | Knowledge Graph (entities) | [Knowledge Graph](https://hitchhikers.yext.com/docs/knowledge-graph) |
-| `yext-ts/live` | Live (content delivery) | [Content Delivery APIs](https://hitchhikers.yext.com/docs/contentdeliveryapis/) |
-| `yext-ts/listings` | Publisher Listings | [Publisher Listings API](https://hitchhikers.yext.com/publisherapis/publisherlistingsapi) |
-| `yext-ts/publisher-ecl` | Publisher ECL | [Publisher ECL API](https://hitchhikers.yext.com/publisherapis/publishereclapi) |
-| `yext-ts/publisher-notify-review` | Publisher Notify Review | [Publisher Notify Review API](https://hitchhikers.yext.com/publisherapis/publishernotifyreviewapi) |
-| `yext-ts/publisher-tracking-pixel` | Publisher Tracking Pixel | [Publisher Tracking Pixel API](https://hitchhikers.yext.com/publisherapis/publishertrackingpixelapi) |
-| `yext-ts/webhooks` | Webhooks | [Webhooks](https://hitchhikers.yext.com/docs/managementapis/webhooks/) |
+| `@flamel-ai/yext-ts/admin` | Admin | [Management APIs](https://hitchhikers.yext.com/docs/managementapis/) |
+| `@flamel-ai/yext-ts/answers` | Search | [Search](https://hitchhikers.yext.com/docs/search/) |
+| `@flamel-ai/yext-ts/chat` | Chat | [Chat](https://hitchhikers.yext.com/docs/chat) |
+| `@flamel-ai/yext-ts/events` | Analytics Events | [Events APIs](https://hitchhikers.yext.com/docs/eventsapis/) |
+| `@flamel-ai/yext-ts/knowledge` | Knowledge Graph (entities) | [Knowledge Graph](https://hitchhikers.yext.com/docs/knowledge-graph) |
+| `@flamel-ai/yext-ts/live` | Live (content delivery) | [Content Delivery APIs](https://hitchhikers.yext.com/docs/contentdeliveryapis/) |
+| `@flamel-ai/yext-ts/listings` | Publisher Listings | [Publisher Listings API](https://hitchhikers.yext.com/publisherapis/publisherlistingsapi) |
+| `@flamel-ai/yext-ts/publisher-ecl` | Publisher ECL | [Publisher ECL API](https://hitchhikers.yext.com/publisherapis/publishereclapi) |
+| `@flamel-ai/yext-ts/publisher-notify-review` | Publisher Notify Review | [Publisher Notify Review API](https://hitchhikers.yext.com/publisherapis/publishernotifyreviewapi) |
+| `@flamel-ai/yext-ts/publisher-tracking-pixel` | Publisher Tracking Pixel | [Publisher Tracking Pixel API](https://hitchhikers.yext.com/publisherapis/publishertrackingpixelapi) |
+| `@flamel-ai/yext-ts/webhooks` | Webhooks | [Webhooks](https://hitchhikers.yext.com/docs/managementapis/webhooks/) |
 
-The package root (`yext-ts`) re-exports every module namespaced (`knowledge`, `listings`, …) plus all the auth helpers. Prefer subpath imports for the smallest bundle.
+The package root (`@flamel-ai/yext-ts`) re-exports every module namespaced (`knowledge`, `listings`, …) plus all the auth helpers. Prefer subpath imports for the smallest bundle.
 
 ## Authentication
 
@@ -51,8 +51,8 @@ Yext accepts three credential shapes, and **every** request also needs a `v` API
 ### Configure one API's client
 
 ```ts
-import { client, listEntities } from "yext-ts/knowledge";
-import { configureYextClient } from "yext-ts";
+import { client, listEntities } from "@flamel-ai/yext-ts/knowledge";
+import { configureYextClient } from "@flamel-ai/yext-ts";
 
 configureYextClient(client, {
   credential: { type: "apiKey", value: process.env.YEXT_API_KEY! },
@@ -66,7 +66,7 @@ const { data, error } = await listEntities({ path: { accountId: "me" }, query: {
 ### Configure every API at once
 
 ```ts
-import { configureYext } from "yext-ts";
+import { configureYext } from "@flamel-ai/yext-ts";
 
 configureYext({
   credential: { type: "accessToken", value: oauthAccessToken },
@@ -81,8 +81,8 @@ configureYext({
 For that case, pass the credential **per call** with `withYextAuth` — no shared state, safe under concurrency:
 
 ```ts
-import { withYextAuth } from "yext-ts";
-import { getEntity } from "yext-ts/knowledge";
+import { withYextAuth } from "@flamel-ai/yext-ts";
+import { getEntity } from "@flamel-ai/yext-ts/knowledge";
 
 // inside a request handler — token resolved for THIS tenant/workspace
 const { data } = await getEntity({
@@ -97,7 +97,7 @@ Each call gets its own fetch closure carrying that request's token (and version)
 ### OAuth (authorization-code flow)
 
 ```ts
-import { buildYextAuthorizeUrl, requestYextOAuthToken } from "yext-ts";
+import { buildYextAuthorizeUrl, requestYextOAuthToken } from "@flamel-ai/yext-ts";
 
 // 1. Send the user here to authorize your app:
 const authUrl = buildYextAuthorizeUrl({
@@ -124,7 +124,7 @@ Use `environment: "sandbox"` on any of these helpers to target Yext's sandbox OA
 Every model has a generated zod schema, exposed under each module's `schemas` namespace:
 
 ```ts
-import { schemas } from "yext-ts/knowledge";
+import { schemas } from "@flamel-ai/yext-ts/knowledge";
 
 const result = schemas.zEntityWrite.safeParse(payload);
 if (!result.success) console.error(result.error);
@@ -145,8 +145,8 @@ Yext doesn't signal every problem with the HTTP status. Each response carries a 
 So a warning rides along on a `200` and a non-fatal error on a `207` — checking `response.ok` alone misses both. SDK calls return `{ data, error, response }` (no throw by default); these helpers read `meta.errors` from either body:
 
 ```ts
-import { getYextErrors, getYextWarnings, hasYextErrors, assertYextOk, YextApiError } from "yext-ts";
-import { createEntity } from "yext-ts/knowledge";
+import { getYextErrors, getYextWarnings, hasYextErrors, assertYextOk, YextApiError } from "@flamel-ai/yext-ts";
+import { createEntity } from "@flamel-ai/yext-ts/knowledge";
 
 const result = await createEntity({ path: { accountId: "me" }, query: {}, body: { /* ... */ } });
 

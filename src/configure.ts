@@ -5,7 +5,7 @@
  * singleton so a single `configureYext(...)` applies the same credential and
  * API version across all 11 APIs. Importing this pulls in every module — if you
  * only use one API, prefer configuring just its client via `configureYextClient`
- * from a subpath import (e.g. `yext-ts/knowledge`) to keep your bundle lean.
+ * from a subpath import (e.g. `@flamel-ai/yext-ts/knowledge`) to keep your bundle lean.
  */
 import { client as adminClient } from "./admin/client.gen.js";
 import { client as answersClient } from "./answers/client.gen.js";

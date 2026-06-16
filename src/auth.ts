@@ -15,16 +15,16 @@
  *
  * Typical usage:
  *
- *   import { configureYext } from "yext-ts";
+ *   import { configureYext } from "@flamel-ai/yext-ts";
  *   configureYext({ credential: { type: "apiKey", value: process.env.YEXT_API_KEY! }, version: "20250401" });
  *
- *   import { getEntity } from "yext-ts/knowledge";
+ *   import { getEntity } from "@flamel-ai/yext-ts/knowledge";
  *   const { data } = await getEntity({ path: { entityId: "my-location" } });
  *
  * Or configure a single API's client:
  *
- *   import { client } from "yext-ts/knowledge";
- *   import { configureYextClient } from "yext-ts";
+ *   import { client } from "@flamel-ai/yext-ts/knowledge";
+ *   import { configureYextClient } from "@flamel-ai/yext-ts";
  *   configureYextClient(client, { credential: { type: "accessToken", value: token } });
  */
 import { z } from "zod";
