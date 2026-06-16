@@ -12,8 +12,8 @@ A clean, fully-typed TypeScript SDK for the [Yext API](https://hitchhikers.yext.
 ## Install
 
 ```bash
-npm install yext-ts
-# or: pnpm add yext-ts
+pnpm add yext-ts
+# or: npm install yext-ts
 ```
 
 Requires Node 20+. `zod` is a dependency (no peer-install needed).
@@ -212,12 +212,12 @@ GitHub secrets are encrypted at rest, masked in logs (any echo shows `***`), and
 [`.github/workflows/release.yml`](.github/workflows/release.yml) publishes to npm (with provenance) when you publish a GitHub Release. One-time setup: add an `NPM_TOKEN` automation token as a repository secret. Then:
 
 ```bash
-npm version patch        # or minor / major — bumps + tags
+pnpm version patch       # or minor / major — bumps + tags
 git push --follow-tags
 gh release create v0.1.1 --generate-notes
 ```
 
-The workflow re-runs typecheck + test + build as a gate before `npm publish`.
+The workflow re-runs typecheck + test + build as a gate before `pnpm publish`.
 
 ## License
 
