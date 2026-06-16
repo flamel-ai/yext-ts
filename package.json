@@ -1,5 +1,5 @@
 {
-  "name": "@flamel-ai/yext-ts",
+  "name": "@flamel-ai/yext-api",
   "version": "0.1.2",
   "packageManager": "pnpm@10.33.0",
   "publishConfig": {
