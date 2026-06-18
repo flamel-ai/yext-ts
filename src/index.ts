@@ -18,3 +18,4 @@ export * as webhooks from "./webhooks/index.js";
 export * from "./auth.js";
 export * from "./configure.js";
 export * from "./errors.js";
+export * from "./richtext.js";

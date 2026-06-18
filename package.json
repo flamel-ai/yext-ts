@@ -53,6 +53,12 @@
       "require": "./dist/errors.cjs",
       "default": "./dist/errors.js"
     },
+    "./richtext": {
+      "types": "./dist/richtext.d.ts",
+      "import": "./dist/richtext.js",
+      "require": "./dist/richtext.cjs",
+      "default": "./dist/richtext.js"
+    },
     "./admin": {
       "types": "./dist/admin/index.d.ts",
       "import": "./dist/admin/index.js",

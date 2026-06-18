@@ -106,6 +106,7 @@ function buildRootIndex(): string {
   lines.push('export * from "./auth.js";');
   lines.push('export * from "./configure.js";');
   lines.push('export * from "./errors.js";');
+  lines.push('export * from "./richtext.js";');
   lines.push("");
   return lines.join("\n");
 }
